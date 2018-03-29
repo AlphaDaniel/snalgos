@@ -12,6 +12,16 @@ class ApplicationController < Sinatra::Base
   get '/' do 
     erb :"index"
   end
+#======================ace testing========================= 
+  # this will end up being /snippets/new
+  get '/ace' do
+    erb :'ace'
+  end
+#---------------------------------------------------------- 
+  post '/' do 
+    
+    "Ace Testing"
+  end
 #========================helpers=========================== 
 
 #========================================================== 
