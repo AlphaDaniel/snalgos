@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController 
 #=========================signup============================ 
   get '/signup' do 
-    redirect "/#{current_user.slug}/profile" if logged_in?
+    go_to_profile if logged_in?
     
     erb :"users/signup"
   end
@@ -10,20 +10,22 @@ class SessionsController < ApplicationController
     user = User.create(params[:user])
     session[:id] = user.id
     
-    redirect "/#{user.slug}/profile"
+    go_to_profile(user.slug)
   end
 
 #=========================login============================ 
-  get '/login' do
+  get '/login' do 
+    go_to_profile if logged_in?
+    
     erb :"users/login"
   end
 #---------------------------------------------------------- 
   post '/login' do 
-    redirect "/#{current_user.slug}/profile" if logged_in?
+    go_to_profile if logged_in?
     
     user = User.find_by(params[:user])
     
-    session[:id] = user.id and redirect "/#{user.slug}/profile" if user && user.authenticate(params[:password])
+    session[:id] = user.id and go_to_profile(user.slug) if user && user.authenticate(params[:password])
     
     redirect to '/signup'
   end

@@ -22,6 +22,10 @@ class ApplicationController < Sinatra::Base
     def logged_in?
       !!current_user
     end
+#-redirects------------------------------------------------     
+    def go_to_profile(username=current_user.slug)
+      redirect "/#{username}/profile" 
+    end
 #---------------------------------------------------------- 
   end
 #========================================================== 
