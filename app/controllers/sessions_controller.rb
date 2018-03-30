@@ -12,5 +12,12 @@ class SessionsController < ApplicationController
     
     redirect "/#{user.slug}/profile"
   end
+#=========================logout=========================== 
+  get '/logout' do 
+    redirect "/login" if !logged_in?
+    
+    session.clear
+    redirect "/"
+  end
 #========================================================== 
 end
