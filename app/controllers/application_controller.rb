@@ -19,8 +19,14 @@ class ApplicationController < Sinatra::Base
   end
 #---------------------------------------------------------- 
   post '/ace' do 
+    binding.pry
+    # params[:content].gsub(",", "\n")
     
-    "Ace Testing"
+    redirect '/show'
+  end
+#----------------------------------------------------------   
+  get '/show' do 
+    erb :'show'
   end
 #========================helpers=========================== 
 
