@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
     erb :'ace'
   end
 #---------------------------------------------------------- 
-  post '/' do 
+  post '/ace' do 
     
     "Ace Testing"
   end
