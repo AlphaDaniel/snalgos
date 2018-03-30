@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 #---------------------------------------------------------- 
   post '/signup' do 
     user = User.create(params[:user])
-    session[:id] = user.id
+    set_session(user.id)
     
     go_to_profile(user.slug)
   end
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
     
     user = User.find_by(params[:user])
     
-    session[:id] = user.id and go_to_profile(user.slug) if user && user.authenticate(params[:password])
+    set_session(user.id) and go_to_profile(user.slug) if user && user.authenticate(params[:password])
     
     redirect to '/signup'
   end

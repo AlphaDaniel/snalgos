@@ -15,6 +15,10 @@ class ApplicationController < Sinatra::Base
 #========================helpers=========================== 
   helpers do
 #-session-------------------------------------------------- 
+    def set_session(id)
+      session[:id] = id
+    end
+    
     def current_user
       @current_user ||= User.find(session[:id]) if session[:id].present?
     end
