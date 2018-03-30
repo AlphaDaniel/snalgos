@@ -19,13 +19,14 @@ class ApplicationController < Sinatra::Base
   end
 #---------------------------------------------------------- 
   post '/ace' do 
-    binding.pry
-    # params[:content].gsub(",", "\n")
+    Snippet.create(content: params[:content].gsub(",", "\n"))
     
     redirect '/show'
   end
 #----------------------------------------------------------   
   get '/show' do 
+    @snippet = Snippet.first
+    
     erb :'show'
   end
 #========================helpers=========================== 
