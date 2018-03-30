@@ -13,6 +13,16 @@ class ApplicationController < Sinatra::Base
     erb :"index"
   end
 #========================helpers=========================== 
-
+  helpers do
+#-session-------------------------------------------------- 
+    def logged_in?
+      !!current_user
+    end
+    
+    def current_user
+      @current_user ||= User.find(session[:id]) if session[:id].present?
+    end
+#---------------------------------------------------------- 
+  end
 #========================================================== 
 end

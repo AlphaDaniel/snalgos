@@ -10,14 +10,14 @@ def x; exit!; end
 #=======================ruby patches========================== 
 # replaces include
 class Module
-  def can(*modules)
+  def instances_can(*modules)
     modules.each(&method(:include))
   end
 end
 
 # replaces extend
 class Module
-  def instances_can(*modules)
+  def can(*modules)
     modules.each(&method(:extend))
   end
 end
