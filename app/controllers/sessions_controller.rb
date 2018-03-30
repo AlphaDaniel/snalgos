@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
     
     user = User.find_by(params[:user])
     
-    set_session(user.id) and go_to_profile(user.slug) if user && user.authenticate(params[:password])
+    set_session(user.id) and go_to_profile(user.slug) if authentic?(user, params[:password])
     
     redirect to '/signup'
   end
