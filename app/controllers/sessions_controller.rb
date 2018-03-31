@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController 
-#=========================signup============================ 
+#=========================signup=========================== 
   get '/signup' do 
     go_to_profile if logged_in?
     

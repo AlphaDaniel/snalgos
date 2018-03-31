@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 #=========================route============================ 
-  get '/:username/profile' do
+  get '/:username/profile' do 
     erb :"users/profile"
   end
 #---------------------------------------------------------- 

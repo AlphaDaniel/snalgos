@@ -10,7 +10,7 @@ class SnippetsController < ApplicationController
     
     redirect '/show'
   end
-#----------------------------------------------------------   
+#---------------------------------------------------------- 
   get '/show' do 
     @snippet = Snippet.first
     
