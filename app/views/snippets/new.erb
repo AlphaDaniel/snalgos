@@ -1,3 +1,7 @@
+<!--ERROR MESSAGE----------------------------------------------------------------------------------------->
+<% if session[:error].present? then %> <span class="error"><%= session[:error]  %></span><br><br> <% end %>
+<!-------------------------------------------------------------------------------------------------------->
+
 <!-- LOAD ACE -->
 <script src="/vendor/ace/src/ace.js"></script>
 <script src="/vendor/ace/src/ext-settings_menu.js"></script>
@@ -8,7 +12,7 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
 <!--------------------------------------------------------->
 
 <!--FORM-->
-<form action="/snippets" method="POST"> 
+<form action="/snippets/new" method="POST"> 
   
   <!--normal-->
   <input type="text" name="content" style="display: none;" />
@@ -21,7 +25,9 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
 <!--CONFIG ACE-->
 <script src="/vendor/ace/ace-config.js"></script>
 
-
+<!--ERROR CLEAR----------->
+<% session[:error] = nil %>
+<!------------------------>
 
 
 

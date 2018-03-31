@@ -41,7 +41,8 @@ class ApplicationController < Sinatra::Base
 #-messages------------------------------------------------- 
     def messages
       Hash[
-        :credentials, "Invalid Credentials, Please Try Again"
+        :credentials, "Invalid Credentials, Please Try Again",
+        :empty, "Your snippet is unhappy. Your snippet is empty. Help the snippet. Fill the snippet."
         ]
     end
 #---------------------------------------------------------- 

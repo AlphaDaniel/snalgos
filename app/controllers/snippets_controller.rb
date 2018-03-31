@@ -6,8 +6,14 @@ class SnippetsController < ApplicationController
     erb :"snippets/new"
   end
 #---------------------------------------------------------- 
-  post '/snippets' do 
-    Snippet.create(content: params[:content].gsub(",", "\n"))
+  post '/snippets/new' do 
+    if params[:content].gsub(",", "").empty?
+      
+      session[:error] = messages[:empty]
+      redirect "/snippets/new"
+    end
+    
+    current_user.snippets << Snippet.create(content: params[:content].gsub(",", "\n"))
     
     redirect '/snippets'
   end
