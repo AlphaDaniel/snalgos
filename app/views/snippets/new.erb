@@ -2,28 +2,30 @@
 <% if session[:error].present? then %> <span class="error"><%= session[:error]  %></span><br><br> <% end %>
 <!-------------------------------------------------------------------------------------------------------->
 
-<!-- LOAD ACE -->
+<!--LOAD ACE----------------------------------------------->
 <script src="/vendor/ace/src/ace.js"></script>
 <script src="/vendor/ace/src/ext-settings_menu.js"></script>
 <!--------------------------------------------------------->
-<!--ACE EDITOR-->
+
+<!--ACE EDITOR------------------------------------------------------->
 <div id="editor"></div>
 To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
-<!--------------------------------------------------------->
+<!------------------------------------------------------------------->
 
-<!--FORM-->
+<!--FORM---------------------------------------------------->
 <form action="/snippets/new" method="POST"> 
   
-  <!--normal-->
+  <!--hidden-->
   <input type="text" name="content" style="display: none;" />
   
   <!--submit-->
   <input type="submit" value="Save">
 </form>
+<!---------------------------------------------------------->
 
-<!--------------------------------------------------------->
-<!--CONFIG ACE-->
+<!--CONFIG ACE---------------------------------->
 <script src="/vendor/ace/ace-config.js"></script>
+<!---------------------------------------------->
 
 <!--ERROR CLEAR----------->
 <% session[:error] = nil %>
