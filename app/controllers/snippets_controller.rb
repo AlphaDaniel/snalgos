@@ -1,6 +1,8 @@
 class SnippetsController < ApplicationController
 #==========================new============================= 
-  get '/snippets/new' do
+  get '/snippets/new' do 
+    go_to_login if !logged_in?
+    
     erb :"snippets/new"
   end
 #---------------------------------------------------------- 
