@@ -1,20 +1,19 @@
 class SnippetsController < ApplicationController
-#======================ace testing========================= 
-  # this will end up being /snippets/new
-  get '/ace' do
-    erb :"snippets/ace"
+#==========================new============================= 
+  get '/snippets/new' do
+    erb :"snippets/new"
   end
 #---------------------------------------------------------- 
-  post '/ace' do 
+  post '/snippets' do 
     Snippet.create(content: params[:content].gsub(",", "\n"))
     
-    redirect '/show'
+    redirect '/snippets'
   end
-#---------------------------------------------------------- 
-  get '/show' do 
-    @snippet = Snippet.first
+#==========================index=========================== 
+  get '/snippets' do 
+    @snippet = Snippet.last
     
-    erb :"snippets/show"
+    erb :"snippets/index"
   end
 #========================================================== 
 end
