@@ -34,6 +34,12 @@ class ApplicationController < Sinatra::Base
     def go_to_profile(username=current_user.slug)
       redirect "/#{username}/profile" 
     end
+#-messages------------------------------------------------     
+    def messages
+      Hash[
+        :credentials, "Invalid Credentials, Please Try Again"
+        ]
+    end
 #---------------------------------------------------------- 
   end
 #========================================================== 

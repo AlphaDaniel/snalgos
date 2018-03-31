@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
     
     set_session(user.id) and go_to_profile(user.slug) if authentic?(user, params[:password])
     
-    session[:error] = "Invalid Credentials, Please Try Again"
+    session[:error] = messages[:credentials]
     redirect to '/login'
   end
 #=========================logout=========================== 
