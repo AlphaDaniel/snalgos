@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
 #=========================login============================ 
   get '/login' do 
-    go_to_profile if logged_in?
+    go_to_profile if logged_in? 
     
     erb :"users/login"
   end
@@ -27,7 +27,8 @@ class SessionsController < ApplicationController
     
     set_session(user.id) and go_to_profile(user.slug) if authentic?(user, params[:password])
     
-    redirect to '/signup'
+    session[:error] = "Invalid Credentials, Please Try Again"
+    redirect to '/login'
   end
 #=========================logout=========================== 
   get '/logout' do 

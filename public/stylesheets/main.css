@@ -1,5 +1,5 @@
+/*GLOBAL*/
+.error {color: red;}
+
 /*ACE EDITOR*/
-#editor { 
-  margin: 0;
-  height: 400px; width: 800px;
-}
+#editor {margin: 0; height: 400px ; width: 800px;}
