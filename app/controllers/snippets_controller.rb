@@ -23,7 +23,9 @@ class SnippetsController < ApplicationController
   end
 #==========================index=========================== 
   get '/snippets' do 
-    @snippets = Snippet.all
+    go_to_login if !logged_in?
+    
+    @snippets = current_user.snippets
     
     erb :"snippets/index"
   end
