@@ -23,7 +23,7 @@ class SnippetsController < ApplicationController
   end
 #==========================index=========================== 
   get '/snippets' do 
-    @snippet = Snippet.last
+    @snippets = Snippet.all
     
     erb :"snippets/index"
   end
