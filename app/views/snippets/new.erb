@@ -21,13 +21,16 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
   <!--TAGS-------------------------------------------------------------------------------->
   
   <!--existing tags-->
-  Select From Existing Tags
-  <% Tag.all.each do |tag| %>
-    <input type="checkbox" name="tags[]" value="<%= tag.name %>" > <%= tag.name %> </input>
-  <% end %> <br><br>
+  <% if Tag.any? %>
+    Select From Existing Tags
+    <% Tag.all.each do |tag| %>
+      <input type="checkbox" name="tags[]" value="<%= tag.name %>" > <%= tag.name %> </input>
+    <% end %> <br><br>
+  <% end %>
+  
   
   <!--create tag-->
-  And/Or Create New Tag
+  <%= "And/or" if Tag.any? %> Create New Tag
   <input type="text" name="tags[]" placeholder=" tag name"></input> <br><br>
   
   <!--submit-->
@@ -42,7 +45,3 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
 <!--ERROR CLEAR----------->
 <% session[:error] = nil %>
 <!------------------------>
-
-
-
-
