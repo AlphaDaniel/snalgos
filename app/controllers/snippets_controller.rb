@@ -11,7 +11,7 @@ class SnippetsController < ApplicationController
     validate_snippet(params[:content])
     
     # create/assign snippet
-    current_user.snippets << snippet = Snippet.create(content: params[:content].gsub(",", "\n"))
+    current_user.snippets << snippet = Snippet.create(content: parsed(params[:content]))
     
     # find or create tags
     tags = Tag.find_or_create(params[:tags])

@@ -39,6 +39,10 @@ class ApplicationController < Sinatra::Base
         
       end
     end
+    
+    def parsed(input)
+      input.gsub(",", "\n")
+    end
 #-redirects------------------------------------------------ 
     def go_to_login
       redirect "/login"
