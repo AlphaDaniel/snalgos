@@ -7,20 +7,20 @@ class SnippetsController < ApplicationController
   end
 #---------------------------------------------------------- 
   post '/snippets/new' do 
-    # input validation
+    # validate input
     if params[:content].gsub(",", "").empty?
       
       session[:error] = messages[:empty]
       redirect "/snippets/new"
     end
     
-    # snippet creation + add to user's snippets
+    # create/assign snippet
     current_user.snippets << snippet = Snippet.create(content: params[:content].gsub(",", "\n"))
     
-    # find or create tags + add to snippet's tags
-    params[:tags].each do |tag_name| 
-      snippet.tags << Tag.find_or_create_by(name: tag_name)
-    end
+    # find or create tags
+    tags = Tag.find_or_create(params[:tags])
+    # assign tags
+    Tag.assign(snippet, tags)
     
     redirect '/snippets'
   end
