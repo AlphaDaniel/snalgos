@@ -10,13 +10,25 @@
 <!--ACE EDITOR------------------------------------------------------->
 <div id="editor"></div>
 To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
+<br><br>
 <!------------------------------------------------------------------->
 
 <!--FORM---------------------------------------------------->
 <form action="/snippets/new" method="POST"> 
-  
-  <!--hidden-->
+  <!--content/hidden-->
   <input type="text" name="content" style="display: none;" />
+  
+  <!--TAGS-------------------------------------------------------------------------------->
+  
+  <!--existing tags-->
+  Select From Existing Tags
+  <% Tag.all.each do |tag| %>
+    <input type="checkbox" name="tags[]" value="<%= tag.name %>" > <%= tag.name %> </input>
+  <% end %> <br><br>
+  
+  <!--create tag-->
+  And/Or Create New Tag
+  <input type="text" name="tags[]" placeholder=" tag name"></input> <br><br>
   
   <!--submit-->
   <input type="submit" value="Save">
