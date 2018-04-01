@@ -15,6 +15,7 @@ class SnippetsController < ApplicationController
     
     # find or create tags
     tags = Tag.find_or_create(params[:tags])
+    
     # assign tags
     Tag.assign(snippet, tags)
     
