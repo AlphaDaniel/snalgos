@@ -13,7 +13,7 @@ class Tag < ActiveRecord::Base
     end
   end
   # tag assigner
-  def self.assign(snippet, tags)
+  def self.assign(snippet, tags) 
     tags.each{|tag| snippet.tags << tag}
   end
 #======================================================================= 

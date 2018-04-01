@@ -8,11 +8,7 @@ class SnippetsController < ApplicationController
 #---------------------------------------------------------- 
   post '/snippets/new' do 
     # validate input
-    if params[:content].gsub(",", "").empty?
-      
-      session[:error] = messages[:empty]
-      redirect "/snippets/new"
-    end
+    validate_snippet(params[:content])
     
     # create/assign snippet
     current_user.snippets << snippet = Snippet.create(content: params[:content].gsub(",", "\n"))

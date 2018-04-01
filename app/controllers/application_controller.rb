@@ -30,6 +30,15 @@ class ApplicationController < Sinatra::Base
     def logged_in?
       !!current_user
     end
+#-snippets------------------------------------------------- 
+    def validate_snippet(input)
+      if input.gsub(",", "").empty?
+        
+        session[:error] = messages[:empty]
+        redirect "/snippets/new"
+        
+      end
+    end
 #-redirects------------------------------------------------ 
     def go_to_login
       redirect "/login"
