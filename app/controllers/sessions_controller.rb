@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController 
 #=========================signup=========================== 
   get '/signup' do 
-    go_to_profile if logged_in?
+    go_to_profile if logged_in? 
     
     erb :"users/signup"
   end

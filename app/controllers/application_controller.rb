@@ -23,8 +23,8 @@ class ApplicationController < Sinatra::Base
       user && user.authenticate(password)
     end
     
-    def current_user
-      @current_user ||= User.find(session[:id]) if session[:id].present?
+    def current_user 
+      @current_user ||= User.find(session[:id]) if session[:id].present? && User.any?
     end
     
     def logged_in?
