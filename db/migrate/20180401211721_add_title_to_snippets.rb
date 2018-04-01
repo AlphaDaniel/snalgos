@@ -3,3 +3,4 @@ class AddTitleToSnippets < ActiveRecord::Migration[5.1]
     add_column :snippets, :title, :string
   end
 end
+
