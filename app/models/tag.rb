@@ -2,7 +2,7 @@ class Tag < ActiveRecord::Base
 #==============================Properties=============================== 
   has_many :snippet_tags
   has_many :snippets, through: :snippet_tags
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates_presence_of :name
 #=============================Class Methods============================= 
   # tag finder/creator
   def self.find_or_create(tags) 

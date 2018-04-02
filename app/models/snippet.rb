@@ -3,7 +3,6 @@ class Snippet < ActiveRecord::Base
   belongs_to :user
   has_many :snippet_tags
   has_many :tags, through: :snippet_tags
-  validates :content, presence: true, uniqueness: { case_sensitive: false }
-  validates :title, presence: true, uniqueness: { case_sensitive: false }
+  validates_presence_of :title, :content
 #==========================================================================   
 end
