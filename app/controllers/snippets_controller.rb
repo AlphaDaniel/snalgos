@@ -52,6 +52,14 @@ class SnippetsController < ApplicationController
     
     redirect "/snippets/#{snippet.id}"
   end
+#========================delete============================ 
+  delete '/snippets/:id/delete' do 
+    # find snippet
+    snippet = Snippet.find(params[:id])
+    
+    snippet.destroy!
+    go_to_profile
+  end
 #==========================show============================ 
   get '/snippets/:id' do 
     log_in_required(:login)

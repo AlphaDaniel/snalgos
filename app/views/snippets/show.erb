@@ -44,6 +44,16 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
   <!--submit-->
   <input type="submit" value="Save">
 </form>
+
+  <!--delete-->
+  <br>
+  <form action="/snippets/<%= @snippet.id %>/delete" method="POST"> 
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    
+    <!--submit-->
+    <input id="submit" type="submit" value="Delete Snippet"></input>
+  </form>
+
 <!------------------------------------------------------------->
 
 <!--CONFIG ACE---------------------------------->
