@@ -1,7 +1,7 @@
 class SnippetsController < ApplicationController
 #==========================new============================= 
   get '/snippets/new' do 
-    go_to_login if !logged_in?
+    log_in_required
     
     erb :"snippets/new"
   end
@@ -23,7 +23,7 @@ class SnippetsController < ApplicationController
   end
 #==========================index=========================== 
   get '/snippets' do 
-    go_to_login if !logged_in?
+    log_in_required
     
     @snippets = current_user.snippets
     
@@ -31,7 +31,7 @@ class SnippetsController < ApplicationController
   end
 #==========================show============================   
   get '/snippets/:id' do 
-    go_to_login if !logged_in?
+    log_in_required
     
     @snippet = Snippet.find(params[:id])
     

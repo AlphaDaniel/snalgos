@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
   end
 #=========================logout=========================== 
   get '/logout' do 
-    go_to_login if !logged_in?
+    log_in_required
     
     session.clear
     redirect "/"
