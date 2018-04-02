@@ -37,6 +37,8 @@ class SnippetsController < ApplicationController
     
     @snippet = Snippet.find(params[:id])
     
+    ownership_required(@snippet) 
+    
     erb :"snippets/show"
   end 
 #========================================================== 

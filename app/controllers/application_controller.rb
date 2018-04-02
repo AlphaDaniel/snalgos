@@ -54,6 +54,11 @@ class ApplicationController < Sinatra::Base
     def go_to_profile(username=current_user.slug)
       redirect "/#{username}/profile" 
     end
+    
+    def ownership_required(asset) 
+      session[:error] = messages[:ownership]
+      go_to_profile if asset.user != current_user 
+    end
 #-messages------------------------------------------------- 
     def error(error)
       session[:error] = messages[error]
@@ -66,7 +71,8 @@ class ApplicationController < Sinatra::Base
         :login, "Must Be Logged In To Access",
         :logout, "",
         :tags, "You Have Not Created Any Tags Yet",
-        :snippets, "You Have Not Created Any Snippets Yet"
+        :snippets, "You Have Not Created Any Snippets Yet",
+        :ownership, "You Do Not Have Access To That Content."
         ]
     end
 #---------------------------------------------------------- 
