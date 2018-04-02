@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
     end
 #-snippets------------------------------------------------- 
     def validate_snippet(input)
-      if input.gsub(",", "").empty?
+      if input.gsub("xNLx", "").empty?
         
         session[:error] = messages[:empty]
         redirect "/snippets/new"
@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
     end
     
     def parsed(input)
-      input.gsub(",", "\n")
+      input.gsub("xNLx", "\n")
     end
 #-redirects------------------------------------------------ 
     def go_to_login

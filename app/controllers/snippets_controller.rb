@@ -11,7 +11,7 @@ class SnippetsController < ApplicationController
     validate_snippet(params[:content])
     
     # create/assign snippet
-    current_user.snippets << snippet = Snippet.create(content: parsed(params[:content]))
+    current_user.snippets << snippet = Snippet.create(title: params[:title], content: parsed(params[:content]))
     
     # find or create tags
     tags = Tag.find_or_create(params[:tags])
@@ -29,5 +29,11 @@ class SnippetsController < ApplicationController
     
     erb :"snippets/index"
   end
+  
+  get '/snippets/show' do 
+    @snippet = Snippet.last
+    
+    erb :"snippets/show"
+  end 
 #========================================================== 
 end

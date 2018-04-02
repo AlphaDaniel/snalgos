@@ -20,6 +20,10 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
   
   <!--TAGS-------------------------------------------------------------------------------->
   
+  <!--title-->
+  Title
+  <input type="text" name="title" placeholder=" snippet title" required ></input> <br><br>
+  
   <!--existing tags-->
   <% if Tag.any? %>
     Select From Existing Tags
@@ -31,7 +35,7 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
   
   <!--create tag-->
   <%= "And/or" if Tag.any? %> Create New Tag
-  <input type="text" name="tags[]" placeholder=" tag name"></input> <br><br>
+  <input type="text" name="tags[]" placeholder=" tag"></input> <br><br>
   
   <!--submit-->
   <input type="submit" value="Save">
