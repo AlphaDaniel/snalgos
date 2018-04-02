@@ -28,12 +28,14 @@
     <nav>
       <a href="/">Home</a>
       <% if logged_in? %>
-        <a href="<%= "/#{current_user.username}/profile" %>">Profile</a>
-        <a href="<%= "/snippets" %>">My Snippets</a>
-        <a href="<%= "/logout" %>">Log Out</a>
+        <a href="<%="/#{current_user.username}/profile"%>">Profile</a>
+        <a href="/snippets">My Snippets</a>
+        <a href="/snippets/new">Create Snippet</a>
+        <a href="/logout">Log Out</a>
+        
       <% else %>
-        <a href="<%= "/signup" %>">Sign Up</a>
-        <a href="<%= "/login" %>">Log In</a>
+        <a href="/signup">Sign Up</a>
+        <a href="/login">Log In</a>
       <% end %>
     </nav>
     <!--NAVIGATION END-->

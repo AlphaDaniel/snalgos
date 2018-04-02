@@ -44,9 +44,11 @@ class ApplicationController < Sinatra::Base
       input.gsub("xNLx", "\n")
     end
 #-redirects------------------------------------------------ 
-    def log_in_required 
-      session[:error] = messages[:login]
-      redirect "/login" if !logged_in?
+    def log_in_required(error) 
+      if !logged_in?
+        session[:error] = messages[error]
+        redirect "/login"
+      end
     end
     
     def go_to_profile(username=current_user.slug)
@@ -57,7 +59,8 @@ class ApplicationController < Sinatra::Base
       Hash[
         :credentials, "Invalid Credentials, Please Try Again",
         :empty, "Your snippet is unhappy. Your snippet is empty. Help the snippet. Fill the snippet.",
-        :login, "Must Be Logged In To Access"
+        :login, "Must Be Logged In To Access",
+        :logout, ""
         ]
     end
 #---------------------------------------------------------- 

@@ -1,7 +1,7 @@
 class SnippetsController < ApplicationController
 #==========================new============================= 
   get '/snippets/new' do 
-    log_in_required
+    log_in_required(:login)
     
     erb :"snippets/new"
   end
@@ -23,7 +23,7 @@ class SnippetsController < ApplicationController
   end
 #==========================index=========================== 
   get '/snippets' do 
-    log_in_required
+    log_in_required(:login)
     
     @snippets = current_user.snippets
     
@@ -31,7 +31,7 @@ class SnippetsController < ApplicationController
   end
 #==========================show============================   
   get '/snippets/:id' do 
-    log_in_required
+    log_in_required(:login)
     
     @snippet = Snippet.find(params[:id])
     

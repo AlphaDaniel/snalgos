@@ -23,8 +23,6 @@ editor.setShowPrintMargin(false);
 //CAPTURE/SET VALUE
 var textarea = $('input[name="content"]');
 editor.getSession().on("change", function () {
-		// textarea.val(editor.getSession().getValue());
-    // textarea.val(editor.getSession().getValue().split("\n").join("\n"));
     textarea.val(editor.getSession().getDocument().getAllLines().join("xNLx"));
 });
 

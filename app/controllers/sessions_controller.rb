@@ -27,12 +27,11 @@ class SessionsController < ApplicationController
     
     set_session(user.id) and go_to_profile(user.slug) if authentic?(user, params[:password])
     
-    session[:error] = messages[:credentials]
-    go_to_login
+    log_in_required(:credentials)
   end
 #=========================logout=========================== 
   get '/logout' do 
-    log_in_required
+    log_in_required(:logout)
     
     session.clear
     redirect "/"
