@@ -29,9 +29,11 @@ class SnippetsController < ApplicationController
     
     erb :"snippets/index"
   end
-  
-  get '/snippets/show' do 
-    @snippet = Snippet.last
+#==========================show============================   
+  get '/snippets/:id' do 
+    go_to_login if !logged_in?
+    
+    @snippet = Snippet.find(params[:id])
     
     erb :"snippets/show"
   end 
