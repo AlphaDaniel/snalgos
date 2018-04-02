@@ -29,7 +29,7 @@ class SnippetsController < ApplicationController
     
     erb :"snippets/index"
   end
-#==========================show============================   
+#==========================show============================ 
   get '/snippets/:id' do 
     log_in_required(:login)
     

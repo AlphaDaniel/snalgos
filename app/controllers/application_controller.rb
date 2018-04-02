@@ -55,12 +55,17 @@ class ApplicationController < Sinatra::Base
       redirect "/#{username}/profile" 
     end
 #-messages------------------------------------------------- 
+    def error(error)
+      session[:error] = messages[error]
+    end
+
     def messages
       Hash[
         :credentials, "Invalid Credentials, Please Try Again",
         :empty, "Your snippet is unhappy. Your snippet is empty. Help the snippet. Fill the snippet.",
         :login, "Must Be Logged In To Access",
-        :logout, ""
+        :logout, "",
+        :tags, "You Have Not Created Any Tags Yet"
         ]
     end
 #---------------------------------------------------------- 
