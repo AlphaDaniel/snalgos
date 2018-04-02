@@ -27,6 +27,8 @@ class SnippetsController < ApplicationController
     
     @snippets = current_user.snippets
     
+    error(:snippets) if @snippets.empty?
+    
     erb :"snippets/index"
   end
 #==========================show============================ 

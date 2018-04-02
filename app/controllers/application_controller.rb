@@ -65,7 +65,8 @@ class ApplicationController < Sinatra::Base
         :empty, "Your snippet is unhappy. Your snippet is empty. Help the snippet. Fill the snippet.",
         :login, "Must Be Logged In To Access",
         :logout, "",
-        :tags, "You Have Not Created Any Tags Yet"
+        :tags, "You Have Not Created Any Tags Yet",
+        :snippets, "You Have Not Created Any Snippets Yet"
         ]
     end
 #---------------------------------------------------------- 
