@@ -2,12 +2,19 @@
 <% if session[:message].present? then %> <span class="error"><%= session[:message]  %></span><br><br> <% end %>
 <!------------------------------------------------------------------------------------------------------------>
 
-<!--TAGS---------------->
+<!--TAGS--------------------------------------------------------->
+<br>
 <% @tags.each do |tag| %>
-  <%= tag.name %>
-  <br>
+  <%= tag.name %> <br>
+  
+  <!--snippets-->
+  <% tag.snippets.each do |snippet| %>
+    <a href="/snippets/<%= snippet.id %>"><%= snippet.title %></a> <br>
+  <% end %>  
+  
+  <br><br>
 <% end %>
-<!---------------------->
+<!--------------------------------------------------------------->
 
 <!--ERROR CLEAR------------->
 <% session[:message] = nil %>
