@@ -13,13 +13,12 @@ class SnippetsController < ApplicationController
     # create/assign snippet
     current_user.snippets << snippet = Snippet.create(title: params[:title], content: parsed(params[:content]))
     
-    # find or create tags
+    # find or create + assign tags
     tags = Tag.find_or_create(params[:tags])
+    snippet.tags = tags if !tags.empty?
     
-    # assign tags
-    Tag.assign(snippet, tags)
-    
-    redirect '/snippets'
+    message(:saved)
+    redirect "/snippets/#{snippet.id}"
   end
 #==========================index=========================== 
   get '/snippets' do 
@@ -27,13 +26,12 @@ class SnippetsController < ApplicationController
     
     @snippets = current_user.snippets
     
-    error(:snippets) if @snippets.empty?
+    message(:snippets) if @snippets.empty?
     
     erb :"snippets/index"
   end
 #=========================update=========================== 
   patch '/snippets/:id/edit' do 
-    # find snippet
     snippet = Snippet.find(params[:id])
     
     # validate content
@@ -42,22 +40,19 @@ class SnippetsController < ApplicationController
     # update snippet
     snippet.update(title: params[:title], content: content)
     
-    # find or create tags
+    # find or create + update tags
     tags = Tag.find_or_create(params[:tags])
-    
-    # update snippet tags
     snippet.tags = tags if !tags.empty?
     
-    error(:saved)
-    
+    message(:saved)
     redirect "/snippets/#{snippet.id}"
   end
 #========================delete============================ 
   delete '/snippets/:id/delete' do 
-    # find snippet
     snippet = Snippet.find(params[:id])
     
     snippet.destroy!
+    
     go_to_profile
   end
 #==========================show============================ 

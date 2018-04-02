@@ -7,14 +7,16 @@ class Tag < ActiveRecord::Base
   # tag finder/creator
   def self.find_or_create(tags) 
     col = [].tap do |col|
+      
       tags.each do |tag_name| 
         col << Tag.find_or_create_by(name: tag_name) if !tag_name.empty?
       end
+      
     end
   end
-  # tag assigner
-  def self.assign(snippet, tags) 
-    tags.each{|tag| snippet.tags << tag}
-  end
+  # # tag assigner
+  # def self.assign(snippet, tags) 
+  #   tags.each{|tag| snippet.tags << tag}
+  # end
 #======================================================================= 
 end

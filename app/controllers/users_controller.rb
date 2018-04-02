@@ -5,10 +5,5 @@ class UsersController < ApplicationController
     
     erb :"users/profile"
   end
-#---------------------------------------------------------- 
-  post '/' do 
-    
-    redirect ""
-  end
 #========================================================== 
 end

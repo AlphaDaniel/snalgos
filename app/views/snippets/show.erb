@@ -1,6 +1,6 @@
-<!--ERROR MESSAGE----------------------------------------------------------------------------------------->
-<br><% if session[:error].present? then %> <span class="error"><%= session[:error]  %></span><br> <% end %>
-<!-------------------------------------------------------------------------------------------------------->
+<!--ERROR MESSAGE--------------------------------------------------------------------------------------------->
+<br><% if session[:message].present? then %> <span class="error"><%= session[:message]  %></span><br> <% end %>
+<!------------------------------------------------------------------------------------------------------------>
 
 <!---LOAD ACE---------------------------------------------->
 <script src="/vendor/ace/src/ace.js"></script>
@@ -13,7 +13,7 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
 <br><br>
 <!------------------------------------------------------------------->
 
-<!--FORM/UPDATE------------------------------------------------>
+<!--FORM/UPDATE------------------------------------------------------------->
 <form action="/snippets/<%= @snippet.id %>/edit" method="POST"> 
   <!--patch/hidden-->
   <input id="hidden" type="hidden" name="_method" value="patch">
@@ -44,22 +44,23 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
   <!--submit-->
   <input type="submit" value="Save">
 </form>
+<!-------------------------------------------------------------------------->
 
-  <!--delete-->
-  <br>
-  <form action="/snippets/<%= @snippet.id %>/delete" method="POST"> 
-    <input id="hidden" type="hidden" name="_method" value="delete">
-    
-    <!--submit-->
-    <input id="submit" type="submit" value="Delete Snippet"></input>
-  </form>
+<!--FORM/DELETE-------------------------------------------------->
+<br>
+<form action="/snippets/<%= @snippet.id %>/delete" method="POST"> 
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  
+  <!--submit-->
+  <input id="submit" type="submit" value="Delete Snippet"></input>
+</form>
+<!--------------------------------------------------------------->
 
-<!------------------------------------------------------------->
 
 <!--CONFIG ACE---------------------------------->
 <script src="/vendor/ace/ace-config.js"></script>
 <!---------------------------------------------->
 
-<!--ERROR CLEAR----------->
-<% session[:error] = nil %>
-<!------------------------>
+<!--ERROR CLEAR------------->
+<% session[:message] = nil %>
+<!-------------------------->

@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
     def validate_snippet(input)
       if input.gsub("xNLx", "").empty?
         
-        session[:error] = messages[:empty]
+        session[:message] = messages[:empty]
         redirect "/snippets/new"
         
       end
@@ -49,9 +49,9 @@ class ApplicationController < Sinatra::Base
       input.gsub("xNLx", "\n")
     end
 #-redirects------------------------------------------------ 
-    def log_in_required(error) 
+    def log_in_required(message) 
       if !logged_in?
-        session[:error] = messages[error]
+        session[:message] = messages[message]
         redirect "/login"
       end
     end
@@ -62,13 +62,13 @@ class ApplicationController < Sinatra::Base
     
     def ownership_required(asset) 
       if asset.user != current_user 
-        session[:error] = messages[:ownership]
+        session[:message] = messages[:ownership]
         go_to_profile 
       end
     end
 #-messages------------------------------------------------- 
-    def error(error)
-      session[:error] = messages[error]
+    def message(message)
+      session[:message] = messages[message]
     end
 
     def messages

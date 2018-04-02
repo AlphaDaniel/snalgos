@@ -5,7 +5,7 @@ class TagsController < ApplicationController
     
     @tags = current_user.tags
     
-    error(:tags) if @tags.empty?
+    message(:tags) if @tags.empty?
     
     erb :"tags/index"
   end
