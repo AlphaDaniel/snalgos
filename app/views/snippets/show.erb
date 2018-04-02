@@ -1,3 +1,7 @@
+<!--ERROR MESSAGE----------------------------------------------------------------------------------------->
+<br><% if session[:error].present? then %> <span class="error"><%= session[:error]  %></span><br> <% end %>
+<!-------------------------------------------------------------------------------------------------------->
+
 <!---LOAD ACE---------------------------------------------->
 <script src="/vendor/ace/src/ace.js"></script>
 <script src="/vendor/ace/src/ext-settings_menu.js"></script>
@@ -6,8 +10,46 @@
 <!--ACE EDITOR------------------------------------------------------->
 <div id="editor"><%= @snippet.content %></div>
 To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
+<br><br>
 <!------------------------------------------------------------------->
+
+<!--FORM/UPDATE------------------------------------------------>
+<form action="/snippets/<%= @snippet.id %>/edit" method="POST"> 
+  <!--patch/hidden-->
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  
+  <!--content/hidden-->
+  <input type="text" name="content" style="display: none;" />
+  
+  <!--update toggle placeholder-->
+  <span style="color: red">Create button here to toggle update fields</span> <br><br>
+  
+  <!--title-->
+  Title
+  <input type="text" name="title" value="<%= @snippet.title %>" required ></input> <br><br>
+
+  <!--existing tags-->
+  <% if current_user.tags.any? %>
+    Select From Existing Tags
+    <% current_user.tags.all.each do |tag| %>
+      <input type="checkbox" name="tags[]" value="<%= tag.name %>" <%= "checked" if @snippet.tags.include?(tag) %> > <%= tag.name %> </input>
+    <% end %> <br><br>
+  <% end %>
+  
+  
+  <!--create tag-->
+  <%= "And/or" if @snippet.tags.any? %> Create New Tag
+  <input type="text" name="tags[]" placeholder=" tag"></input> <br><br>
+  
+  <!--submit-->
+  <input type="submit" value="Save">
+</form>
+<!------------------------------------------------------------->
 
 <!--CONFIG ACE---------------------------------->
 <script src="/vendor/ace/ace-config.js"></script>
 <!---------------------------------------------->
+
+<!--ERROR CLEAR----------->
+<% session[:error] = nil %>
+<!------------------------>

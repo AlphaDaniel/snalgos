@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
     
     go_to_profile(user.slug)
   end
-
 #=========================login============================ 
   get '/login' do 
     go_to_profile if logged_in? 

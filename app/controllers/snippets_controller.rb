@@ -31,6 +31,27 @@ class SnippetsController < ApplicationController
     
     erb :"snippets/index"
   end
+#=========================update=========================== 
+  patch '/snippets/:id/edit' do 
+    # find snippet
+    snippet = Snippet.find(params[:id])
+    
+    # validate content
+    content = validate_content(snippet, params[:content])
+    
+    # update snippet
+    snippet.update(title: params[:title], content: content)
+    
+    # find or create tags
+    tags = Tag.find_or_create(params[:tags])
+    
+    # update snippet tags
+    snippet.tags = tags if !tags.empty?
+    
+    error(:saved)
+    
+    redirect "/snippets/#{snippet.id}"
+  end
 #==========================show============================ 
   get '/snippets/:id' do 
     log_in_required(:login)

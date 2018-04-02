@@ -40,6 +40,11 @@ class ApplicationController < Sinatra::Base
       end
     end
     
+    def validate_content(snippet, content)
+      snippet.content if content.empty?
+      parsed(content) if !content.empty?
+    end
+    
     def parsed(input)
       input.gsub("xNLx", "\n")
     end
@@ -56,8 +61,10 @@ class ApplicationController < Sinatra::Base
     end
     
     def ownership_required(asset) 
-      session[:error] = messages[:ownership]
-      go_to_profile if asset.user != current_user 
+      if asset.user != current_user 
+        session[:error] = messages[:ownership]
+        go_to_profile 
+      end
     end
 #-messages------------------------------------------------- 
     def error(error)
@@ -72,7 +79,8 @@ class ApplicationController < Sinatra::Base
         :logout, "",
         :tags, "You Have Not Created Any Tags Yet",
         :snippets, "You Have Not Created Any Snippets Yet",
-        :ownership, "You Do Not Have Access To That Content."
+        :ownership, "You Do Not Have Access To That Content.",
+        :saved, "Saved"
         ]
     end
 #---------------------------------------------------------- 
