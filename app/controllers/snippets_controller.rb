@@ -16,7 +16,7 @@ class SnippetsController < ApplicationController
     # assign snippet if uniq
     current_user.snippets << snippet if !current_user.snippets.include?(snippet)
     
-    # find or create + assign tags
+    # find or create + assign tags if uniq
     params[:tags].each do |tag_name|
       
       tag = Tag.find_or_create_by(name: tag_name) if !tag_name.empty?
@@ -32,9 +32,7 @@ class SnippetsController < ApplicationController
   get '/snippets' do 
     log_in_required(:login)
     
-    @snippets = current_user.snippets
-    
-    message(:snippets) if @snippets.empty?
+    message(:snippets) if current_user.snippets.empty?
     
     erb :"snippets/index"
   end
@@ -42,7 +40,7 @@ class SnippetsController < ApplicationController
   patch '/snippets/:id/edit' do 
     snippet = Snippet.find(params[:id])
     
-    # validate content
+    # content
     content = snippet.content if params[:content].empty?
     content = parsed(params[:content]) if !params[:content].empty?
     

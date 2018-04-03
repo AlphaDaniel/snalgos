@@ -4,7 +4,7 @@
 
 <!--SNIPPETS--------------------------------------------------->
 <br>
-<% @snippets.each do |snippet| %>
+<% current_user.snippets.each do |snippet| %>
   <a href="/snippets/<%= snippet.id %>"><%= snippet.title %></a>
   <br>
 <% end %>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-#=========================route============================ 
+#========================profile=========================== 
   get '/:username/profile' do 
     log_in_required(:login)
     

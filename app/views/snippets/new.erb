@@ -24,14 +24,16 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
   
   <!--existing tags-->
   <% if current_user.tags.any? %>
+  
     Select From Existing Tags
     <% current_user.tags.each do |tag| %>
       <input type="checkbox" name="tags[]" value="<%= tag.name %>" > <%= tag.name %> </input>
     <% end %> <br><br>
+    
   <% end %>
   
   <!--create tag-->
-  <%= "And/or" if Tag.any? %> Create New Tag
+  Create New Tag
   <input type="text" name="tags[]" placeholder=" tag"></input> <br><br>
   
   <!--submit-->
