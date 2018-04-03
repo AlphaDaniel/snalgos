@@ -10,14 +10,20 @@ class SnippetsController < ApplicationController
     # validate input
     validate_snippet(params[:content])
     
-    # create/assign snippet
+    # find or create snippet
     snippet = Snippet.find_or_create_by(title: params[:title], content: parsed(params[:content]))
     
+    # assign snippet if uniq
     current_user.snippets << snippet if !current_user.snippets.include?(snippet)
     
     # find or create + assign tags
-    tags = Tag.find_or_create(params[:tags])
-    snippet.tags = tags if !tags.empty?
+    params[:tags].each do |tag_name|
+      
+      tag = Tag.find_or_create_by(name: params[:tags][0]) if !params[:tags][0].empty?
+      
+      snippet.tags << tag if !snippet.tags.include?(tag)
+      
+    end
     
     message(:saved)
     redirect "/snippets/#{snippet.id}"
@@ -42,14 +48,19 @@ class SnippetsController < ApplicationController
     # update snippet
     snippet.update(title: params[:title], content: content)
     
-    # find or create + update tags
-    tags = Tag.find_or_create(params[:tags])
-    snippet.tags = tags if !tags.empty?
+    # find or create + assign tags
+    params[:tags].each do |tag_name|
+      
+      tag = Tag.find_or_create_by(name: params[:tags][0]) if !params[:tags][0].empty?
+      
+      snippet.tags << tag if !snippet.tags.include?(tag)
+      
+    end
     
     message(:saved)
     redirect "/snippets/#{snippet.id}"
   end
-#========================delete============================ 
+#=========================delete=========================== 
   delete '/snippets/:id/delete' do 
     snippet = Snippet.find(params[:id])
     
