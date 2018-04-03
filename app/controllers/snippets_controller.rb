@@ -19,9 +19,9 @@ class SnippetsController < ApplicationController
     # find or create + assign tags
     params[:tags].each do |tag_name|
       
-      tag = Tag.find_or_create_by(name: params[:tags][0]) if !params[:tags][0].empty?
+      tag = Tag.find_or_create_by(name: tag_name) if !tag_name.empty?
       
-      snippet.tags << tag if !snippet.tags.include?(tag)
+      snippet.tags << tag if !snippet.tags.include?(tag) && !tag.nil?
       
     end
     
@@ -43,19 +43,21 @@ class SnippetsController < ApplicationController
     snippet = Snippet.find(params[:id])
     
     # validate content
-    content = validate_content(snippet, params[:content])
+    content = snippet.content if params[:content].empty?
+    content = parsed(params[:content]) if !params[:content].empty?
     
     # update snippet
     snippet.update(title: params[:title], content: content)
     
     # find or create + assign tags
+    tags = []
     params[:tags].each do |tag_name|
       
-      tag = Tag.find_or_create_by(name: params[:tags][0]) if !params[:tags][0].empty?
-      
-      snippet.tags << tag if !snippet.tags.include?(tag)
+      tags << tag = Tag.find_or_create_by(name: tag_name) if !tag_name.empty?
       
     end
+    
+    snippet.tags = tags 
     
     message(:saved)
     redirect "/snippets/#{snippet.id}"

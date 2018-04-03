@@ -23,9 +23,9 @@ To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
   <input type="text" name="title" placeholder=" snippet title" required ></input> <br><br>
   
   <!--existing tags-->
-  <% if Tag.any? %>
+  <% if current_user.tags.any? %>
     Select From Existing Tags
-    <% Tag.all.each do |tag| %>
+    <% current_user.tags.each do |tag| %>
       <input type="checkbox" name="tags[]" value="<%= tag.name %>" > <%= tag.name %> </input>
     <% end %> <br><br>
   <% end %>

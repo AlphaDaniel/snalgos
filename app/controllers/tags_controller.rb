@@ -3,9 +3,7 @@ class TagsController < ApplicationController
   get '/tags' do 
     log_in_required(:login)
     
-    @tags = current_user.tags
-    
-    message(:tags) if @tags.empty?
+    message(:tags) if current_user.tags.empty?
     
     erb :"tags/index"
   end

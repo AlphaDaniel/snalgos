@@ -40,11 +40,6 @@ class ApplicationController < Sinatra::Base
       end
     end
     
-    def validate_content(snippet, content)
-      snippet.content if content.empty?
-      parsed(content) if !content.empty?
-    end
-    
     def parsed(input)
       input.gsub("xNLx", "\n")
     end

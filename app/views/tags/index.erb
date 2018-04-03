@@ -4,7 +4,7 @@
 
 <!--TAGS--------------------------------------------------------->
 <br>
-<% @tags.each do |tag| %>
+<% current_user.tags.each do |tag| %>
   <%= tag.name %> <br>
   
   <!--snippets-->
@@ -12,7 +12,7 @@
     <a href="/snippets/<%= snippet.id %>"><%= snippet.title %></a> <br>
   <% end %>  
   
-  <br><br>
+  <br>
 <% end %>
 <!--------------------------------------------------------------->
 
