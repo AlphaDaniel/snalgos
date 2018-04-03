@@ -19,11 +19,11 @@ tags = [
 
 # CREATE
 users.each{|u| User.create(u)}
-snippets.each{|u| Snippet.create(u)}
-tags.each{|u| Tag.create(u)}
+# snippets.each{|u| Snippet.create(u)}
+# tags.each{|u| Tag.create(u)}
 
 
 # ASSIGN
-Snippet.all.each{|s| User.first.snippets << s}
-Tag.all.each{|t| Snippet.first.tags << t}
+# Snippet.all.each{|s| User.first.snippets << s}
+# Tag.all.each{|t| Snippet.first.tags << t}
  
