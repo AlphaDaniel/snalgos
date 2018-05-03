@@ -47,10 +47,10 @@ body {
 }
 
 /*INFINITE SPIN*/
-#logo {  
-	animation: infiniteSpin 7s infinite ease-in-out;
-	animation-delay: 2s;
-}
+/*#logo {  */
+/*	animation: infiniteSpin 7s infinite ease-in-out;*/
+/*	animation-delay: 2s;*/
+/*}*/
 
 @keyframes infiniteSpin {
 	from{ transform: rotateY(360deg) }
