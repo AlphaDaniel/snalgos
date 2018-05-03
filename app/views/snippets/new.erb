@@ -1,50 +1,47 @@
-<!--ERROR MESSAGE--------------------------------------------------------------------------------------------->
-<% if session[:message].present? then %> <span class="error"><%= session[:message]  %></span><br><br> <% end %>
-<!------------------------------------------------------------------------------------------------------------>
+<div id="editor" form="snippetForm"></div>
+<div class="mode priority"></div>
+<img class="ace-settings priority cursor" src="/img/settings.svg">
+<span class="tooltip top-priority hidden">Shortcut Ctrl+I (win) Cmd+I (mac)</span>
 
-<!--LOAD ACE----------------------------------------------->
+<div id="btm-wrapper">
+    <input type="text" name="title" placeholder="Snippet Title" pattern="[a-zA-Z0-9\s]{1,25}" title="Title must be under or equal to 25 characters containing only letters, numbers, and/or spaces" required form="snippetForm"/>
+    <label class="tag-toggle btn">TAGS</label>
+    <input class="btn" type="submit" value="SAVE" form="snippetForm"/>
+</div>
+
+<!--hidden elements-->
+<div class="tags-slide priority hidden">
+	<div id="tags-wrapper">
+		<div id="tags-list">
+			<label id="new-tag-toggle" class="btn-focus cursor" href="#">Create Tag</label>
+            <input id="new-tag" class="hidden" type="text" name="tags[]" placeholder="Create Tag" pattern="[a-zA-Z0-9\s]{1,14}" title="Up to 14 Characters" form="snippetForm"/>
+            <% if current_user.tags.any? %>
+                <% i = 0 %>
+                <% current_user.tags.each do |tag| %>
+                    <!--style-->
+                    <style>#toggle<%= "#{i+1}" %>:checked + label { box-shadow: inset 0 0 0 3px #55b0e3; }</style>
+                    <!--checkbox hidden-->
+                    <input id="toggle<%= "#{i+1}" %>" class="hidden" type="checkbox" name="tags[]" value="<%= tag.name %>" form="snippetForm"/>
+                    <!--checkbox label/toggle-->
+                    <label class="tag cursor" for="toggle<%= "#{i+1}" %>"><%= tag.name %></label> 
+                    <% i += 1 %>
+                <% end %>  
+            <% end %>
+		</div>
+		<img id="close-button" class="close-tags cursor" src="/img/close.svg">
+	</div>
+</div>
+
+<form id="snippetForm" action="/snippets/new" method="POST">
+    <input class="hidden" type="text" name="content" form="snippetForm"/>
+    <input class="hidden" type="text" name="mode" form="snippetForm"/>
+</form>
+
+<!--scripts-->
 <script src="/vendor/ace/src/ace.js"></script>
 <script src="/vendor/ace/src/ext-settings_menu.js"></script>
-<!--------------------------------------------------------->
-
-<!--ACE EDITOR------------------------------------------------------->
-<div id="editor"></div>
-To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
-<br><br>
-<!------------------------------------------------------------------->
-
-<!--FORM------------------------------------------------------------------------------------>
-<form action="/snippets/new" method="POST"> 
-  <!--content/hidden-->
-  <input type="text" name="content" style="display: none;" />
-  
-  <!--title-->
-  Title
-  <input type="text" name="title" placeholder=" snippet title" required ></input> <br><br>
-  
-  <!--existing tags-->
-  <% if current_user.tags.any? %>
-  
-    Select From Existing Tags
-    <% current_user.tags.each do |tag| %>
-      <input type="checkbox" name="tags[]" value="<%= tag.name %>" > <%= tag.name %> </input>
-    <% end %> <br><br>
-    
-  <% end %>
-  
-  <!--create tag-->
-  Create New Tag
-  <input type="text" name="tags[]" placeholder=" tag"></input> <br><br>
-  
-  <!--submit-->
-  <input type="submit" value="Save">
-</form>
-<!------------------------------------------------------------------------------------------>
-
-<!--CONFIG ACE---------------------------------->
-<script src="/vendor/ace/ace-config.js"></script>
-<!---------------------------------------------->
-
-<!--ERROR CLEAR------------->
-<% session[:message] = nil %>
-<!-------------------------->
+<!--set ace mode-->
+<script>ace.edit("editor").session.setMode("ace/mode/ruby");</script>
+<script src="/js/ace-config.js"></script>
+<!--stylesheet-->
+<link rel="stylesheet" href="/css/overrides/ace.css"/>

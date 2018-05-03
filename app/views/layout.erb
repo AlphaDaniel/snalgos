@@ -1,58 +1,70 @@
-<!DOCTYPE html>
-<!--head-->
-<head>
-  <!--title-->
-  <title>Snalgos</title>
-  <!--meta-->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!--stylesheets-->
-  <link rel="stylesheet" href="/stylesheets/main.css" />
-  <!--fonts-->
-  <script async="true" src="https://use.edgefonts.net/source-code-pro.js"></script>
-  <!--load jquery-->
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-</head>
-<!--head end-->
-
-
-<!--body-->
-<body>
-  <!--main wrapper-->
-  <div class="wrapper">
-<!--------------------------------------CONTENT------------------------------------>
-    <!--NAVIGATION-->
-    <nav>
-      <a href="/">Home</a>
-      <% if logged_in? %>
-        <a href="<%="/#{current_user.username}/profile"%>">Profile</a>
-        <a href="/snippets">My Snippets</a>
-        <a href="/tags">My Tags</a>
-        <a href="/snippets/new">Create Snippet</a>
-        <a href="/logout">Log Out</a>
-        
-      <% else %>
-        <a href="/signup">Sign Up</a>
-        <a href="/login">Log In</a>
-      <% end %>
-    </nav>
-    <!--NAVIGATION END-->
-    
-      
-    <!--VIEWS-->
-    <%= yield %>
-    <!--VIEWS END-->
-    
-    
-    <!--FOOTER-->
-    <footer>
-    </footer>
-    <!--FOOTER END-->
-<!--------------------------------------------------------------------------------->
-  </div>
-  <!--main wrapper end-->
-</body>
-<!--body end-->
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<!-- Place favicon.ico in the root directory --> 
+		<!--<link rel="apple-touch-icon" href="favicon.png">-->
+		<title>Snalgos</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--fonts-->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,600" rel="stylesheet">
+		<!--stylesheets-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" type="text/css" />
+		<link rel="stylesheet" href="/css/primary/global.css"/>
+		<link rel="stylesheet" href="/css/primary/grid-control.css"/>
+		<link rel="stylesheet" href="/css/primary/styles.css"/>
+		<link rel="stylesheet" href="/css/animation.css"/>
+		<link rel="stylesheet" href="/css/responsive.css"/>
+		<!--scripts-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="/vendor/nicescroll.min.js"></script>
+	</head>
+	<body>
+		<!-----------BODY/MASTER-GRID----------->        
+		<div id="masterGrid">
+			<!-----------HEADER----------->
+			<header>
+				<a href="/"><img id="logo" src="/img/site-logo.svg" alt="site-logo"></a>
+				<span id="menuToggle"><span></span></span>
+				
+				<% if !logged_in? %>
+					<a class="menuItem" href="/login">LOG IN</a>
+					<a class="menuItem" href="/signup">SIGN UP</a>
+				<% else %> 			
+					<a class="menuItem active" href="/<%=current_user.username%>/dashboard">DASHBOARD</a>
+					<a class="menuItem" href="/snippets/new">CREATE</a>
+					<a class="menuItem" href="/logout">LOG OUT</a>
+				<% end %>
+			</header>
+			<div id="mobileMenu" class="top-priority"></div>
+			<!-----------CONTENT----------->
+			<content>
+				<%= yield %>
+				<% if session[:alert].present? %> 
+					<div class="message alert top-priority hidden"><%= session[:alert]  %></div>
+					<% session[:alert] = nil %>
+				<% end %>
+				
+				<% if session[:confirmation].present? %> 
+					<div class="message confirmation top-priority hidden"><%= session[:confirmation]  %></div>
+					<% session[:confirmation] = nil %>
+				<% end %>
+			</content>
+			<!-----------FOOTER----------->
+			<footer>
+				<span>
+					Copywrite © <span id="year"></span> Snalgos
+					<span id="footerPlus">
+						&nbsp;|&nbsp;  Built With&nbsp;<span id="footerNouns"> <%= $FOOTER_NOUNS.sample %> </span>
+						&nbsp;By Alpha Daniel
+					</span>
+				</span>
+			</footer>          
+		</div>
+		<!--scripts-->
+		<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
+</html>

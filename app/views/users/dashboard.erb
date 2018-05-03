@@ -1,0 +1,30 @@
+<style>content {grid-gap: 0;}</style>
+
+<div id="dashboard">
+	<div id="tags-wrapper" class="tw-dash">
+		<div id="tags-list">
+			<a class="tag btn-focus" href="/snippets/new">CREATE</a>
+			<% if !@snippets.empty? %>
+				<a class="tag" href="/<%=current_user.username%>/dashboard">All</a>
+			<% end %>
+			<% current_user.tags.each do |tag| %>
+				<a class="tag" href="/tags/<%= tag.slug(tag.name) %>"><%= tag.name %></a>
+			<% end %>
+		</div>
+		<img id="close-button" class="close-tags hidden cursor" src="/img/close.svg">
+	</div>
+	<% if @snippets.empty? %>
+		<div class="quickie priority">
+			<iframe src="https://player.vimeo.com/video/267013316??quality=1080p&autoplay=1&loop=1&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<script src="https://player.vimeo.com/api/player.js"></script>
+		</div>
+		
+	<% end %>
+	<div class="snippets">
+		<% @snippets.each do |snippet| %>
+			<a class="snippet" href="/snippets/<%= snippet.id %>"><%= snippet.title %></a>
+		<% end %>
+		<span class="pad-hack invisible"></span>
+	</div>
+	<label class="tag-toggle tt-dash btn hidden cursor">TAGS</label>
+</div>

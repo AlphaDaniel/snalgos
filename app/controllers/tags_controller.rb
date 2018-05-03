@@ -1,11 +1,15 @@
 class TagsController < ApplicationController 
-#==========================index=========================== 
-  get '/tags' do 
-    log_in_required(:login)
+#==========================show============================ 
+  get '/tags/:name' do 
+    @tag = Tag.find_by(name: de_slug(params[:name]))
     
-    message(:tags) if current_user.tags.empty?
+    go("/404") if @tag.nil?
     
-    erb :"tags/index"
-  end
+    ownership_required(@tag)
+    
+    @snippets = @tag.snippets
+    
+    erb :"tags/show"
+  end 
 #========================================================== 
 end

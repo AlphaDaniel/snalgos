@@ -1,0 +1,84 @@
+/************************************RESET***********************************/
+*, *::before, *::after {border: none; margin: 0;padding: 0;}
+/****************************************************************************/
+
+/**********************************GLOBAL************************************/
+/*/*font-family: 'Roboto', sans-serif; font-weight: regular, medium, bold*/
+/*font-family: 'Josefin Sans', sans-serif;*/
+/*font-family: 'Nanum Gothic Coding', monospace;*/
+/****************************************************************************/
+
+:root {
+	/*solids*/
+	--blue: #002545;
+	--lightBlue: #376998;
+	--lightBlueVibrant: #007fb9;
+	--drkerBlue: #031525;
+	--green: #060c;
+	--blackTrans: #00000080;
+	--whiteTinted: #f1f6f8;
+	--whiteTrans: #b2c9dd80;
+	--whiteTintedTrans: #96deff66;
+	/*gradients*/
+	--blueG: linear-gradient(#073c6b, #0c1e2d);
+	--blueG2: linear-gradient(#1e588c, #0c1e2d);
+	--lightBlueG: linear-gradient(#035687, #07264199);
+	--drkBlueG: linear-gradient(#022539, #072641);
+	--drkBlueLightTrans: linear-gradient(#031e3699,#031321);
+	--drkBlueTransG: linear-gradient(#031e36 13%,#03132100);
+	--purpleG: linear-gradient(#5f458c, #100930);
+	--redG: linear-gradient(#841010cc, #2c0404);
+	/*box shadows*/
+	--boxLightBlueGlow: -1px 0px 18px #007fb9;
+	--boxLightBlueBorder: inset 0 0 0 3px #55b0e3;
+	--boxDrk: -10px 10px 1px #06131b99;
+	--boxLightBlueTransShadow: -1px 0px 23px #007fb933;
+	--boxBlackShadow: 0 0px 27px -7px black;
+}
+
+/*NICE SCROLL*/
+html { overflow: hidden; }
+#ascrail2000 div.nicescroll-cursors { background-color: rgba(21, 157, 228, 0.42) !important; }
+#ascrail2001 div.nicescroll-cursors { background-color: rgb(4, 26, 46) !important }
+
+.menuItem, .message, .btn, label, .tag, footer
+{font-family: 'Josefin Sans', sans-serif;}
+
+input, #editor
+{font-family: 'Nanum Gothic Coding', monospace;}
+
+a { text-decoration: none; }
+
+
+input { background: var(--drkBlueG); padding: 0 10px; }
+
+input[placeholder="username"]:valid, input[placeholder="email"]:valid, input[placeholder="password"]:valid {
+    background: url("/img/success.png") no-repeat var(--whiteTinted) !important;
+    background-position: 257px 19px !important;
+}
+
+.btn {
+	height: 40px;
+	width: 100px;
+	box-shadow: 0px 8px 15px rgba(9, 8, 8, 0.58);
+	font-size: 14px;
+}
+
+.btn, label { background: var(--blueG2)!important; }
+
+.btn-focus { background: var(--purpleG)!important; }
+
+.btn-alert { background: var(--redG)!important; }
+
+.btn:hover { transform: scale(1.1); }
+
+.priority
+{ z-index: 1000; }
+
+.top-priority
+{ z-index: 2000; }
+
+.cursor, .btn
+{ cursor: pointer; }
+
+/****************************************************************************/

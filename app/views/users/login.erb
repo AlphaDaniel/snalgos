@@ -1,23 +1,15 @@
-<h1>Log In</h1>
+<div id="lsWrapper">
+	<div id="ls">
+		<label>LOGIN</label>
+		<input type="text" name="user[username]" placeholder="Username" form="lsForm" required>
+		<input type="password" name="password" placeholder="Password" form="lsForm" required></input>
+		
+		<a class="btn" href="/signup">SIGN UP</a>
+		<input class="btn btn-focus" type="submit" value="LOG IN" form="lsForm">
+	</div>
+</div>
 
-<!--ERROR MESSAGE--------------------------------------------------------------------------------------------->
-<% if session[:message].present? then %> <span class="error"><%= session[:message]  %></span><br><br> <% end %>
-<!------------------------------------------------------------------------------------------------------------>
-
-<!--FORM---------------------------------------------------------------------------------->
-<form action="/login" method="POST"> 
-  
-  <!--username-->
-  <input type="text" name="user[username]" placeholder="username" required></input><br><br>
-  
-  <!--password-->
-  <input type="password" name="password" placeholder="password" required></input><br><br>
-  
-  <!--submit-->
-  <input type="submit" value="Log In">
+<!--form hidden-->
+<form id="lsForm" action="/login" method="POST">
 </form>
-<!---------------------------------------------------------------------------------------->
 
-<!--ERROR CLEAR------------->
-<% session[:message] = nil %>
-<!-------------------------->

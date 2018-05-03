@@ -1,0 +1,95 @@
+table {
+    border-spacing: 0px;
+}
+
+#ace_settingsmenu {
+    background-color: rgba(2, 15, 26, 0.79);
+    box-shadow: -5px 0px 18px #007fb9;
+}
+
+.ace_optionsMenuEntry td {
+    padding: 7px 0;
+    border-bottom: solid 1px #118ac666;
+}
+
+.ace_optionsMenuEntry td label {
+    display: block;
+    background: none !important;
+    margin-right: 20px;
+}
+
+select, .ace_optionsMenuEntry td div button, .ace_optionsMenuEntry > td > input {
+    background: #2b577b33;
+    color: white;    
+    padding: 5px 8px;
+    border: none;
+    box-shadow: inset 0px 0px 0px 1px #ffffff1a;
+}
+
+select, .ace_optionsMenuEntry > td > input {
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.ace_optionsMenuEntry td div button {
+    font-size: 13px;
+}
+
+.ace_optionsMenuEntry button[ace_selected_button="true"] {
+    background: #001d2c4d;
+    border: none;
+    box-shadow: 0 0 5px 1px #29acff;
+}
+
+.ace_optionsMenuEntry td select {
+    padding: 2px 5px;
+}
+
+.ace_optionsMenuEntry button {
+    font-size: 12px;
+    padding: 5px;
+    background: #15344b;
+    color: white;
+    border: none;
+    margin-right: 5px;
+}
+
+.ace_optionsMenuEntry button:hover {
+    background: #051d2b;
+    box-shadow: 0 0 5px 1px #29acff;
+}
+
+.ace_optionsMenuEntry option {
+    background: #000f1d;
+}
+
+.ace_closeButton {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 14px;
+    padding: 7px 20px;
+    margin: 10px;
+    position: absolute;
+    top: 908px;
+    right: 85px;
+    border-radius: 0;
+    letter-spacing: 2px;
+    font-family: 'Josefin Sans', sans-serif;
+    cursor: pointer;
+}
+
+.ace_closeButton:hover {
+    color: #a4e1ff;
+    font-size: 17px;
+    right: 82px;
+}
+
+.ace_scrollbar.ace_scrollbar-v {
+    overflow: hidden;
+}
+
+optgroup {
+    background: #163045;
+}
+

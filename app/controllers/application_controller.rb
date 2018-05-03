@@ -8,9 +8,17 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'static'
     set :views, Proc.new { File.join(root, "../views/") }
   end
-#=========================index============================ 
+#==========================404============================= 
+  error 404 do 
+    go("/404")
+  end
+  
+  get '/404' do 
+    erb :"404"
+  end
+#==========================root============================ 
   get '/' do 
-    erb :"home"
+    logged_in? ? (go_to_dashboard) : (go("/login"))
   end
 #========================helpers=========================== 
   helpers do
@@ -31,24 +39,14 @@ class ApplicationController < Sinatra::Base
       !!current_user
     end
 #-access--------------------------------------------------- 
-    def log_in_required(message) 
-      if !logged_in?
-        session[:message] = messages[message]
-        redirect "/login"
-      end
-    end
-
     def ownership_required(asset) 
-      if asset.user != current_user 
-        session[:message] = messages[:ownership]
-        go_to_profile 
-      end
+      go("/404") if asset.user != current_user 
     end
 #-input---------------------------------------------------- 
     def validate_snippet(input)
       if input.gsub("xNLx", "").empty?
         
-        session[:message] = messages[:empty]
+        session[:alert] = alerts[:empty]
         redirect "/snippets/new"
         
       end
@@ -58,25 +56,64 @@ class ApplicationController < Sinatra::Base
       input.gsub("xNLx", "\n")
     end
 #-redirects------------------------------------------------ 
-    def go_to_profile(username=current_user.slug)
-      redirect "/#{username}/profile" 
-    end
-#-messages------------------------------------------------- 
-    def message(message) 
-      session[:message] = messages[message]
+    def login_required
+      go("/404") if !logged_in?
     end
 
-    def messages 
+    def go_to_dashboard(username=current_user.slug(current_user.username)) 
+      redirect "/#{username}/dashboard" 
+    end
+    
+    def go(route) 
+      redirect route
+    end
+    
+    def goto_signup 
+      redirect "/signup"
+    end
+#-messages------------------------------------------------- 
+    def alert(alert) 
+      session[:alert] = alerts[alert]
+    end
+    
+    def confirmation(confirmation) 
+      session[:confirmation] = confirmations[confirmation]
+    end
+
+    def alerts 
       Hash[ 
         :credentials, "Invalid Credentials, Please Try Again",
         :empty, "Your snippet is unhappy. Your snippet is empty. Help the snippet. Fill the snippet.",
-        :login, "Must Be Logged In To Access",
-        :logout, "",
-        :tags, "You Have Not Created Any Tags Yet",
-        :snippets, "You Have Not Created Any Snippets Yet",
-        :ownership, "You Do Not Have Access To That Content.",
-        :saved, "Saved"
-        ]
+        :snippets, "You Have Not Created Any Snippets Yet, Click Create To Get Started",
+        :name_taken, "That Username Is Taken, Please Try Another"]
+    end
+    
+    def confirmations 
+      Hash[ 
+      :saved, "Saved",
+      :updated, "Updated",
+      :deleted, "Deleted",
+      :logged_in, "You Are Already Logged In"]
+    end
+    
+    $FOOTER_NOUNS = [
+      "Love",
+      "Passion",
+      "Care",
+      "Dedication",
+      "Devotion",
+      "Sweat",
+      "Easter Eggs and This Is One HeHe",
+      "Excellence",
+      "Quality",
+      "Greatness",
+      "Class",
+      "Distinction",
+      "Creativity",
+      ]
+#-misc----------------------------------------------------- 
+    def de_slug(slug)
+      slug.gsub("-", " ")
     end
 #---------------------------------------------------------- 
   end

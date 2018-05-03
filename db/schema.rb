@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401211721) do
+ActiveRecord::Schema.define(version: 20180429063243) do
+
+  create_table "editor_sessions", force: :cascade do |t|
+    t.string "mode"
+    t.integer "snippet_id"
+  end
 
   create_table "snippet_tags", force: :cascade do |t|
     t.integer "snippet_id"

@@ -1,0 +1,26 @@
+body { background: #0c0c0d; }
+
+header, footer { display: none; }
+
+#masterGrid {
+    background: url(/img/404.gif) no-repeat center center fixed;
+    grid-template: 1fr / 1fr;
+    grid-template-areas: "404";
+}
+
+content {
+    grid-area: 404;
+    grid-gap: 0px;
+    grid-row-start: 1;
+    padding: 0;
+}
+
+#btn-home {
+    place-self: center;
+    position: relative;
+    top: 140px;
+    padding: 11px 68px;
+    right: -1px;
+    height: 20px;
+    width: 45px;
+}

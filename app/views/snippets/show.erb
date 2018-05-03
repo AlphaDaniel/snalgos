@@ -1,68 +1,58 @@
-<!--ERROR MESSAGE--------------------------------------------------------------------------------------------->
-<br><% if session[:message].present? then %> <span class="error"><%= session[:message]  %></span><br> <% end %>
-<!------------------------------------------------------------------------------------------------------------>
+<link rel="stylesheet" href="/css/overrides/snippets-show.css"/>
 
-<!---LOAD ACE---------------------------------------------->
+<div id="editor" form="snippetForm"><%= @snippet.content %></div>
+<div class="mode priority"></div>
+<img class="ace-settings priority cursor" src="/img/settings.svg"/>
+<span class="tooltip top-priority hidden">Shortcut Ctrl+I (win) Cmd+I (mac)</span>
+
+<div id="btm-wrapper">
+    <input type="text" name="title" value="<%= @snippet.title %>" required form="snippetForm"/>
+    <label class="tag-toggle btn">TAGS</label>
+    <input class="btn" type="submit" value="UPDATE" form="snippetForm"/>
+    <input class="btn btn-alert" id="submit" type="submit" value="DELETE" form="deleteForm"></input>
+</div>
+
+<!--hidden elements-->
+<div class="tags-slide priority hidden">
+    <div id="tags-wrapper">
+        <div id="tags-list">
+            <label id="new-tag-toggle" class="btn-focus cursor" href="#">Create Tag</label>
+            <input id="new-tag" class="hidden" type="text" name="tags[]" placeholder="Create Tag" form="snippetForm"/>
+            <% if current_user.tags.any? %>
+                <% i = 0 %>
+                <% current_user.tags.each do |tag| %>
+                    <!--style-->
+                    <style>#toggle<%= "#{i+1}" %>:checked + label { box-shadow: inset 0 0 0 3px #55b0e3; }</style>
+                    <!--checkbox hidden-->
+                    <input id="toggle<%= "#{i+1}" %>" class="hidden" type="checkbox" name="tags[]" value="<%= tag.name %>" <%= "checked" if @snippet.tags.include?(tag) %> form="snippetForm"></input>
+                    <!--checkbox label/toggle-->
+                    <label class="tag cursor" for="toggle<%= "#{i+1}" %>"><%= tag.name %></label> 
+                    <% i += 1 %>
+                <% end %>  
+            <% end %>
+        </div>
+        <img id="close-button" class="close-tags cursor" src="/img/close.svg">
+	</div>
+</div>
+
+<form id="snippetForm" action="/snippets/<%= @snippet.id %>/edit" method="POST">
+    <input class="hidden" type="text" name="content" form="snippetForm"/>
+    <input class="hidden" type="text" name="mode" form="snippetForm"/>
+    
+    <input id="hidden" type="hidden" name="_method" value="patch" form="snippetForm"/>
+</form>
+
+<form id="deleteForm" action="/snippets/<%= @snippet.id %>/delete" method="POST"> 
+    <input id="hidden" type="hidden" name="_method" value="delete"/>
+</form>
+
+<!--scripts-->
 <script src="/vendor/ace/src/ace.js"></script>
 <script src="/vendor/ace/src/ext-settings_menu.js"></script>
-<!--------------------------------------------------------->
 
-<!--ACE EDITOR------------------------------------------------------->
-<div id="editor"><%= @snippet.content %></div>
-To open settings panel, inside editor - CTRL+Q (Windows) | CMD+Q (Mac)
-<br><br>
-<!------------------------------------------------------------------->
+<!--set ace mode-->
+<script>ace.edit("editor").session.setMode("<%= @snippet.editor_session.mode %>");</script>
 
-<!--FORM/UPDATE------------------------------------------------------------->
-<form action="/snippets/<%= @snippet.id %>/edit" method="POST"> 
-  <!--patch/hidden-->
-  <input id="hidden" type="hidden" name="_method" value="patch">
-  
-  <!--content/hidden-->
-  <input type="text" name="content" style="display: none;" />
-  
-  <!--update toggle placeholder-->
-  <span style="color: red">Create button here to toggle update fields</span> <br><br>
-  
-  <!--title-->
-  Title
-  <input type="text" name="title" value="<%= @snippet.title %>" required ></input> <br><br>
-
-  <!--existing tags-->
-  <% if current_user.tags.any? %>
-  
-    Select From Existing Tags
-    <% current_user.tags.all.each do |tag| %>
-      <input type="checkbox" name="tags[]" value="<%= tag.name %>" <%= "checked" if @snippet.tags.include?(tag) %> > <%= tag.name %> </input>
-    <% end %> <br><br>
-    
-  <% end %>
-  
-  
-  <!--create tag-->
-  Create New Tag
-  <input type="text" name="tags[]" placeholder=" tag"></input> <br><br>
-  
-  <!--submit-->
-  <input type="submit" value="Save">
-</form>
-<!-------------------------------------------------------------------------->
-
-<!--FORM/DELETE-------------------------------------------------->
-<br>
-<form action="/snippets/<%= @snippet.id %>/delete" method="POST"> 
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  
-  <!--submit-->
-  <input id="submit" type="submit" value="Delete Snippet"></input>
-</form>
-<!--------------------------------------------------------------->
-
-
-<!--CONFIG ACE---------------------------------->
-<script src="/vendor/ace/ace-config.js"></script>
-<!---------------------------------------------->
-
-<!--ERROR CLEAR------------->
-<% session[:message] = nil %>
-<!-------------------------->
+<script src="/js/ace-config.js"></script>
+<!--stylesheet-->
+<link rel="stylesheet" href="/css/overrides/ace.css"/>

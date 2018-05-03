@@ -1,0 +1,102 @@
+/************************************STYLES**********************************/
+/*All styles UN-related to element placing on the grid. Add refs here below.*/
+/****************************************************************************/
+
+/*STYLE GROUPS*/
+a, input, .btn, .btn:hover, label, .message, header, .mode, .tooltip, footer
+{ color: white; }
+
+/*BODY======================================================================*/
+
+body {
+	background-image: url("/img/typography.svg"),
+	linear-gradient(-45deg, #306C8D, #1A6A9E, #1C85AB, #2B7AC6);
+}
+
+/*HEADER====================================================================*/
+
+header { background: var(--blueG); }
+
+header .menuItem { box-shadow: var(--boxDrk); }
+
+.menuItem { background: var(--drkBlueTransG); }
+
+.menuItem:hover { background: var(--purpleG); }
+
+.menuItem[href="/logout"]:hover { background: var(--redG); }
+
+.menuItem.active { background: var(--purpleG); }
+
+#mobileMenu .menuItem {
+    background: var(--blue);
+    border-bottom: solid 1px var(--lightBlue);
+}
+
+#mobileMenu .menuItem:hover { background: var(--drkerBlue); }
+
+#mobileMenu .menuItem:first-child { border-top: solid 0.1px var(--lightBlue); }
+
+/*CONTENT===================================================================*/
+
+.alert { background: var(--redG); }
+
+.confirmation { background: var(--green); }
+
+#lsWrapper {
+    background: var(--whiteTrans);
+    box-shadow: -50px -40px 1px 10px var(--blackTrans);
+}
+
+#ls input:not(.btn-focus) {
+    background: var(--whiteTinted);
+    color: black;
+}
+
+#new-tag-toggle, .tag {
+	background: var(--blueG2);
+	border-radius: 20px;
+}
+
+.tag.active { box-shadow: var(--boxLightBlueBorder); }
+
+#close-button {
+    border-radius: 20px;
+    background: var(--drkerBlue);
+}
+
+#tags-wrapper { background: var(--drkerBlue);
+box-shadow: var(--boxLightBlueGlow);}
+
+.quickie, .snippets {
+    background: var(--whiteTintedTrans);
+    box-shadow: var(boxBlackShadow);
+}
+
+.snippet {
+	background: var(--drkBlueLightTrans);
+	box-shadow: var(--boxDrk);
+}
+
+.mode {
+    background: var(--blackTrans);
+    box-shadow: var(--boxLightBlueTransShadow);
+    border-radius: 30px 30px 0px 30px;
+}
+
+.ace-settings { opacity: 0.7; }
+
+.tooltip {
+    border-radius: 50px 70px 0px 50px;
+    background: var(--blackTrans);
+    box-shadow: var(--boxLightBlueTransShadow);
+}
+
+#new-tag-toggle { opacity: 1 !important; }
+
+/*FOOTER====================================================================*/
+
+footer { background: var(--blueG); }
+
+#footerNouns { color: var(--lightBlueVibrant); }
+
+/****************************************************************************/

@@ -1,41 +1,37 @@
 class SessionsController < ApplicationController 
 #=========================signup=========================== 
   get '/signup' do 
-    go_to_profile if logged_in? 
+    confirmation(:logged_in) and go_to_dashboard if logged_in?
     
     erb :"users/signup"
   end
 #---------------------------------------------------------- 
   post '/signup' do 
+    alert(:name_taken) and go("/signup") if User.find_by(username: params[:user][:username])
+    
     user = User.create(params[:user])
     
-    set_session(user.id)
-    
-    go_to_profile
+    set_session(user.id) and go_to_dashboard
   end
 #=========================login============================ 
   get '/login' do 
-    go_to_profile if logged_in? 
+    confirmation(:logged_in) and go_to_dashboard if logged_in? 
     
     erb :"users/login"
   end
 #---------------------------------------------------------- 
   post '/login' do 
-    go_to_profile if logged_in?
-    
     user = User.find_by(params[:user])
     
-    set_session(user.id) and go_to_profile(user.slug) if authentic?(user, params[:password])
-    
-    # else
-    log_in_required(:credentials)
+    set_session(user.id) and go_to_dashboard if authentic?(user, params[:password])
+
+    alert(:credentials) and go("/login") if !logged_in?
   end
 #=========================logout=========================== 
   get '/logout' do 
-    log_in_required(:logout)
+    login_required
     
-    session.clear
-    redirect "/"
+    session.clear and go("/")
   end
 #========================================================== 
 end

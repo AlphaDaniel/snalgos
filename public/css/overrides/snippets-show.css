@@ -1,0 +1,43 @@
+#btm-wrapper {
+	grid-template-columns: 400px repeat(3, 100px);
+}
+
+/****************************************************************************/
+@media only screen and (max-width: 900px) {
+/****************************************************************************/
+	
+	#btm-wrapper {
+		grid-template-columns: 1fr;
+		width: 100%;
+		grid-auto-rows: 40px;
+		grid-auto-flow: column;
+	}	
+	
+	#btm-wrapper > :nth-child(1) {
+		justify-self: stretch;
+		grid-column: span 3;  
+	}
+	
+	#btm-wrapper > :last-child {
+		grid-row: 2;
+		justify-self: start;
+	}	
+  
+}
+/****************************************************************************/
+@media only screen and (max-width: 380px) {
+/****************************************************************************/
+	
+	#btm-wrapper > * {
+	    grid-column: 1!important;
+	    width: 100%;
+	}
+	
+	#btm-wrapper > :first-child {
+	    width: auto;
+	}	
+  
+}
+/****************************************************************************/
+
+

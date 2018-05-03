@@ -1,0 +1,273 @@
+/************************************GRIDS***********************************/
+/*     Identify grids with indents as visual representation of hierarchy    */
+/****************************************************************************/
+
+/*MAIN GRIDS*/
+#masterGrid, 
+	header, 
+	content,
+		/*LOGIN/SIGNUP*/
+		#lsWrapper,
+			#ls,
+		/*DASHBOARD/TAG-SHOW*/
+		#dashboard,
+			/*tags*/
+			#tags-wrapper,
+				#tags-list,
+					.tag,
+			/*snippets*/
+			.quickie,
+			.snippets,
+		/*NEW/SHOW*/
+		#btm-wrapper,
+	footer,
+/*MINI GRIDS*/
+.btn, label 
+{display: grid;}
+
+/*********************************GRID CONTROL*******************************/
+/*   Styles related to element placing on the grid, spacing & sizing only   */
+/****************************************************************************/
+
+/*STYLE GROUPS*/
+.message
+{position: absolute;}
+
+.valid-ico, #close-button, .mode, .ace-settings, .tooltip 
+{position: relative;}
+
+.message, #mobileMenu .menuItem
+{ text-align: center; }
+
+.btn, label, #lsWrapper, #new-tag-toggle, .tag, footer 
+{place-content: center;}
+
+#lsWrapper
+{place-self: center;}
+
+.ace-settings, .mode, .tooltip
+{place-self: end;}
+
+#new-tag
+{justify-self: center;}
+
+header > *, #btm-wrapper
+{justify-self: start;}
+
+.btn, header > *
+{align-self: center;}
+
+#mobileMenu, .confirmation
+{align-self: start;}
+
+.alert
+{align-self: end;}
+
+header, #btm-wrapper
+{grid-gap: 20px;}
+
+content, #tags-list
+{grid-row-gap: 20px;}
+
+/*MASTER====================================================================*/
+
+#masterGrid {
+	height: 100vh;
+	grid-template-rows: 90px 1fr 80px;
+	grid-template-areas: "top" "mid" "btm";
+}
+
+/*HEADER====================================================================*/
+
+header {
+	grid-area: top;
+	grid-template-columns: minmax(130px, 1fr);
+	grid-auto-flow: column;
+	padding: 0 40px;
+}
+
+#logo { height: 50px; }
+
+.menuItem {
+	padding: 10px 15px 5px;
+	font-size: 17px;
+}
+
+header .menuItem { margin-bottom: 10px; }
+
+#mobileMenu {
+	grid-column-start: 1;
+	grid-row-start: 2;
+	grid-auto-rows: 50px;
+}
+
+#mobileMenu .menuItem {
+    line-height: 32px;
+    font-size: 1em;
+}
+
+/*CONTENT===================================================================*/
+
+content {
+	grid-area: mid;
+	grid-template-rows: 1fr auto;
+	grid-auto-rows: 40px;
+	padding: 20px;
+	grid-template-areas: "main" "btm";
+}
+
+.message {
+    grid-area: main;
+    width: 100%;
+    padding: 10px 20px;
+    left: -20px;
+    font-size: 1.2em;
+}
+
+.alert { bottom: 80px; }
+
+.confirmation { top: 90px; }
+
+#lsWrapper {
+    grid-area: main;
+    height: auto;
+    width: 450px;
+    margin-bottom: 50px;
+    padding: 40px 0;
+}
+
+#ls {
+	grid-template-columns: repeat(3, 100px);
+	grid-auto-rows: 60px;
+	grid-row-gap: 10px;
+}
+
+#ls label { font-size: 1.3em; }
+
+#ls :nth-child(-n+3),
+#ls input:nth-child(4) {
+    grid-column: span 3;
+}
+
+#ls input:last-child { grid-column-start: 3; }
+
+#dashboard {
+	grid-area: main;
+	grid-template-columns: 200px 1fr;
+	grid-template-rows: 1fr auto; 
+	padding: 20px;
+	grid-template-areas: "tags snippets";
+}
+
+#close-button {
+    grid-area: main;
+    height: 20px;
+    top: -11px;
+    right: 11px;
+    padding: 10px;
+}
+
+#tags-wrapper {
+	height: 100%;
+	grid-template-areas: "main";
+}
+
+#tags-list {
+	grid-area: main;
+    max-height: 100%;
+    grid-auto-rows: 40px;
+	margin: 20px 10px;
+}
+
+#new-tag { width: 140px; }
+
+#new-tag-toggle, .tag {
+	padding: 10px 0;
+	margin: 0 20px;
+}
+
+.quickie, .snippets {
+    grid-area: snippets;
+    padding: 40px 40px;
+    margin: 40px 0;
+}
+
+.snippet {
+	font-size: 18px;
+	padding: 20px 15px;
+	margin-left: 30px;
+}
+
+.snippets {
+	grid-area: snippets;
+	max-height: 100%;
+	grid-row-gap: 30px;
+	padding: 20px 25px 20px 5px;
+	grid-auto-rows: 60px;
+}
+
+.pad-hack.invisible { height: 5px; }
+
+#editor { grid-area: main; }
+
+.mode {
+    grid-area: main;
+    top: -10px;
+    right: 10px;
+    height: 16.6px;
+    padding: 4px 20px;
+    font-size: 0.8em;
+    line-height: 1.3;
+    letter-spacing: 1.5px;
+}
+
+.ace-settings {
+	grid-area: main;
+	top: -19px;
+	right: 5px;
+	height: 35px;
+	padding: 25px;
+}
+
+.ace-settings:hover {
+    height: 40px;
+    animation: none;
+    transform: rotate(0deg);
+}
+
+.tooltip {
+    grid-area: main;
+    top: -84px;
+    right: 74px;
+    padding: 7px 15px;
+}
+
+.ace-settings.priority.cursor:hover + .tooltip {
+    display: block;
+}
+
+#btm-wrapper {
+    grid-template-columns: 400px repeat(2, 100px);
+    width: auto;
+}
+
+.tags-slide {
+    grid-area: main;
+    width: 200px;
+}
+
+/*FOOTER====================================================================*/
+
+footer { grid-area: btm; }
+
+#footerNouns { font-size: 1.4em; }
+
+/*******************************HIDDEN ELEMENTS******************************/
+/*                               Order Matters                              */
+/****************************************************************************/
+.invisible 
+{visibility: hidden;}
+.hidden, form, #menuToggle, #mobileMenu
+{display: none;}
+
+/****************************************************************************/

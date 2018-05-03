@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
-#========================profile=========================== 
-  get '/:username/profile' do 
-    log_in_required(:login)
+#=======================dashboard========================== 
+  get '/:username/dashboard' do 
+    go("/404") if current_user.username != params[:username]
     
-    if current_user.username != params[:username]
-      message(:ownership) and go_to_profile 
-    end
+    @snippets = current_user.snippets
     
-    erb :"users/profile"
+    alert(:snippets) if @snippets.empty?
+    
+    erb :"users/dashboard"
   end
 #========================================================== 
 end
+
