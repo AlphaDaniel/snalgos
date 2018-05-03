@@ -29,8 +29,20 @@
 [![forthebadge](http://forthebadge.com/images/badges/check-it-out.svg)](http://forthebadge.com)
 
 ---
-> Cross Browser Support Pending. For Now Use **Firefox** To [Demo](http://snalgos.us-east-2.elasticbeanstalk.com/)
-
+>  
+>
+> ![image](https://i.imgur.com/JMQNmsc.gif)
+> Want To Take It For A Test Run ?   **[Demo Snalgos Here](http://www.snalgos.com)**
+>
+>---
+> **Guest Credentials:** Username: **guest** | Password: **12345**
+>
+> **Populated Account:** Username: **dev** | Password: **12345**
+>
+> **Or feel free to sign up with your own credentials**
+>
+>---
+> ***Note:** Open settings menu for the editor by clicking the spinning gears icon on the bottom right or ctrl+I on windows | cmd+I on mac*
 ---
 ## To do list:
 * Auto-Sort Tags In Slide-Out Alphabetically
@@ -42,6 +54,7 @@
 ## Contributing
 
 Bug reports and pull requests are welcome.  
+
 [![contributions welcome](https://img.shields.io/badge/Contributions%20/%20Feedback%20/%20Requests-welcome-blue.svg?style=flat)](https://github.com/AlphaDaniel/snalgos/issues)
 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.

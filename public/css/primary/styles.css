@@ -9,8 +9,7 @@ a, input, .btn, .btn:hover, label, .message, header, .mode, .tooltip, footer
 /*BODY======================================================================*/
 
 body {
-	background-image: url("/img/typography.svg"),
-	linear-gradient(-45deg, #306C8D, #1A6A9E, #1C85AB, #2B7AC6);
+    background-image: url("/img/typography.svg"), linear-gradient(-45deg, #306C8D, #1A6A9E, #2B7AC6);
 }
 
 /*HEADER====================================================================*/
