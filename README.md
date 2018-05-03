@@ -18,7 +18,6 @@
 
 "*This is my first web application since becoming a developer and it was a ton of fun building! I am proudly obsessive and building something that caters to the need to organize seemed like just what the doctor ordered.*"
 
-
 ---
 ## A Look Inside
 [![forthebadge](http://forthebadge.com/images/badges/thats-how-they-get-you.svg)](http://forthebadge.com)
@@ -30,7 +29,7 @@
 [![forthebadge](http://forthebadge.com/images/badges/check-it-out.svg)](http://forthebadge.com)
 
 ---
-DEMO PLACEHOLDER
+> Cross Browser Support Pending. For Now Use **Firefox** To [Demo](http://snalgos.us-east-2.elasticbeanstalk.com/)
 
 ---
 ## To do list:
