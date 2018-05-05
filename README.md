@@ -45,6 +45,8 @@
 > ***Note:** Open settings menu for the editor by clicking the spinning gears icon on the bottom right or ctrl+I on windows | cmd+I on mac*
 ---
 ## To do list:
+* Improve Glitches on Mobile
+* Deep Dive / Cross Browser Support Testing
 * Auto-Sort Tags In Slide-Out Alphabetically
 * Ability To Sort By Language
 * Add Search Feature
