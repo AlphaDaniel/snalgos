@@ -7,6 +7,8 @@ class SnippetsController < ApplicationController
   end
 #---------------------------------------------------------- 
   post '/snippets/new' do 
+    # live demo limit
+    alert(:demo) and go("/") if current_user.snippets.count >= 5
     # get editor session
     editor_session = EditorSession.create(mode: params[:mode])
     # validate input

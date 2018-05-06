@@ -56,7 +56,7 @@ class ApplicationController < Sinatra::Base
       input.gsub("xNLx", "\n")
     end
 #-redirects------------------------------------------------ 
-    def login_required
+    def login_required 
       go("/404") if !logged_in?
     end
 
@@ -66,10 +66,6 @@ class ApplicationController < Sinatra::Base
     
     def go(route) 
       redirect route
-    end
-    
-    def goto_signup 
-      redirect "/signup"
     end
 #-messages------------------------------------------------- 
     def alert(alert) 
@@ -85,7 +81,8 @@ class ApplicationController < Sinatra::Base
         :credentials, "Invalid Credentials, Please Try Again",
         :empty, "Your snippet is unhappy. Your snippet is empty. Help the snippet. Fill the snippet.",
         :snippets, "You Have Not Created Any Snippets Yet, Click Create To Get Started",
-        :name_taken, "That Username Is Taken, Please Try Another"]
+        :name_taken, "That Username Is Taken, Please Try Another",
+        :demo, "You Have Reached The Snippets Limit For This Demo Version"]
     end
     
     def confirmations 
