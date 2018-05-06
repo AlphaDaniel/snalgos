@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
   end
 #==========================root============================ 
   get '/' do 
-    logged_in? ? (go_to_dashboard) : (go("/login"))
+    logged_in? ? (go_to_dashboard) : (go("/signup"))
   end
 #========================helpers=========================== 
   helpers do
