@@ -35,11 +35,10 @@
 > Want To Take It For A Test Run ?   **[Demo Snalgos Here](http://www.snalgos.com)**
 >
 >---
-> **Guest Credentials:** Username: **guest** | Password: **12345**
+> **Feel free to sign up with your own credentials**
+> (*Demo Version Allows A Maximum of 5 Snippets*)
 >
-> **Populated Account:** Username: **dev** | Password: **12345**
->
-> **Or feel free to sign up with your own credentials**
+> **Or Sample Populated Account Using These Creds:** Username: **dev** | Password: **12345**
 >
 >---
 > ***Note:** Open settings menu for the editor by clicking the spinning gears icon on the bottom right or ctrl+I on windows | cmd+I on mac*
