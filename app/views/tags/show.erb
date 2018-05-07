@@ -13,7 +13,7 @@
 	</div>
     <div class="snippets">
 		<% @snippets.each do |snippet| %>
-			<a class="snippet" href="/snippets/<%= snippet.id %>"><%= snippet.title %></a>
+			<a class="snippet" href="/<%= current_user.username %>/snippets/<%= snippet.slug(snippet.title) %>"><%= snippet.title %></a>
 		<% end %>
 		<span class="pad-hack invisible">padding hack</span>
     </div>

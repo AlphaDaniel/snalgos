@@ -1,4 +1,5 @@
 class Snippet < ActiveRecord::Base 
+  instances_can Slugify
 #========================================================== 
   belongs_to :user
   has_many :snippet_tags

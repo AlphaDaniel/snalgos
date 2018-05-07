@@ -28,12 +28,12 @@ class SnippetsController < ApplicationController
     end
     
     confirmation(:saved)
-    redirect "/snippets/#{snippet.id}"
+    redirect "#{current_user.username}/snippets/#{snippet.slug(snippet.title)}"
   end
 #=========================update=========================== 
-  patch '/snippets/:id/edit' do 
+  patch '/:user/snippets/:snippet_title/edit' do 
     # find snippet
-    snippet = Snippet.find(params[:id])
+    snippet = Snippet.find_by(title: de_slug(params[:snippet_title]))
     # content handler
     content = snippet.content if params[:content].empty?
     content = parsed(params[:content]) if !params[:content].empty?
@@ -52,7 +52,7 @@ class SnippetsController < ApplicationController
     snippet.tags = tags
     
     confirmation(:updated)
-    redirect "/snippets/#{snippet.id}"
+    redirect "#{current_user.username}/snippets/#{snippet.slug(snippet.title)}"
   end
 #=========================delete=========================== 
   delete '/snippets/:id/delete' do 
@@ -65,10 +65,10 @@ class SnippetsController < ApplicationController
     go_to_dashboard
   end
 #==========================show============================ 
-  get '/snippets/:id' do 
+  get '/:user/snippets/:snippet_title' do 
     login_required
-   
-    @snippet = Snippet.find_by(id: params[:id])
+    
+    @snippet = Snippet.find_by(title: de_slug(params[:snippet_title]))
     
     go("/404") if @snippet.nil? 
     

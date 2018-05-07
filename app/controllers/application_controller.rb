@@ -39,6 +39,10 @@ class ApplicationController < Sinatra::Base
       !!current_user
     end
 #-access--------------------------------------------------- 
+    def login_required 
+      go("/404") if !logged_in?
+    end
+    
     def ownership_required(asset) 
       go("/404") if asset.user != current_user 
     end
@@ -56,10 +60,6 @@ class ApplicationController < Sinatra::Base
       input.gsub("xNLx", "\n")
     end
 #-redirects------------------------------------------------ 
-    def login_required 
-      go("/404") if !logged_in?
-    end
-
     def go_to_dashboard(username=current_user.slug(current_user.username)) 
       redirect "/#{username}/dashboard" 
     end
