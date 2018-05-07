@@ -204,7 +204,7 @@ content {
 	grid-area: snippets;
 	grid-row-gap: 30px;
 	padding: 35px 25px 20px 5px;
-	grid-auto-rows: auto;
+	grid-auto-rows: min-content;
 }
 
 .pad-hack { height: 0; }

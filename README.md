@@ -2,7 +2,7 @@
 
 ![image](https://i.imgur.com/01FbpD1.png)
 
-**STORE YOUR PERSONAL CODE LIBRARY USING THE MOST ADVANCED EDITOR ON THE MARKET**
+**STORE YOUR PERSONAL CODE LIBRARY USING THE POPULAR ACE EDITOR**
 
 [![forthebadge](https://forthebadge.com/images/badges/just-plain-nasty.svg)](https://forthebadge.com)
 
