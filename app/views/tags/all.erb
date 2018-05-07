@@ -4,27 +4,18 @@
 	<div id="tags-wrapper" class="tw-dash top-priority">
 		<div id="tags-list">
 			<a class="tag btn-focus" href="/snippets/new">CREATE</a>
-			<% if !@snippets.empty? %>
-				<a class="tag" href="/<%= current_user.username %>/tags/all">All</a>
-			<% end %>
+			<a class="tag" href="/<%= current_user.username %>/tags/all">All</a>
 			<% current_user.tags.each do |tag| %>
 				<a class="tag" href="/<%= current_user.username %>/tags/<%= tag.slug(tag.name) %>"><%= tag.name %></a>
 			<% end %>
 		</div>
 		<img id="close-button" class="close-tags hidden cursor" src="/img/close.svg">
 	</div>
-	<% if @snippets.empty? %>
-		<div class="quickie priority">
-			<iframe src="https://player.vimeo.com/video/267013316??quality=1080p&autoplay=1&loop=1&title=0&byline=0&portrait=0" style="height: 100%; width: 100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-			<script src="https://player.vimeo.com/api/player.js"></script>
-		</div>
-		
-	<% end %>
-	<div class="snippets">
-		<% @snippets.each do |snippet| %>
+    <div class="snippets">
+		<% current_user.snippets.each do |snippet| %>
 			<a class="snippet" href="/<%= current_user.username %>/snippets/<%= snippet.slug(snippet.title) %>"><%= snippet.title %></a>
 		<% end %>
 		<span class="pad-hack invisible">padding hack</span>
-	</div>
+    </div>
 	<label class="tag-toggle tt-dash btn hidden cursor">TAGS</label>
 </div>

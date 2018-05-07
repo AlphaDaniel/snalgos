@@ -1,11 +1,11 @@
 # USERS
-# users = [
-#   {username: 'guest', email: 'e@1.com', password: '12345'},
-#   {username: 'dev', email: 'e@2.com', password: '12345'}
-# ] 
+users = [
+  {username: 'guest', email: 'e@1.com', password: '12345'},
+  {username: 'dev', email: 'e@2.com', password: '12345'}
+] 
 
 # CREATE USERS
-User.create(username: 'dev', email: 'e@2.com', password: '12345')
+users.each {|u| User.create(u)}
 
 # CREATE/ASSOCIATE SNIPPETS, SESSION, & TAGS
 a = 0
@@ -15,6 +15,6 @@ a = 0
   
   snippet.tags << Tag.new(name: "Dummy Tag #{a+1}")
   
-  User.first.snippets << snippet
+  User.second.snippets << snippet
   a += 1
 end

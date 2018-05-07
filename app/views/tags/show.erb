@@ -4,9 +4,9 @@
 	<div id="tags-wrapper" class="tw-dash top-priority">
 		<div id="tags-list">
 			<a class="tag btn-focus" href="/snippets/new">CREATE</a>
-			<a class="tag" href="/<%=current_user.username%>/dashboard">All</a>
+			<a class="tag" href="/<%= current_user.username %>/tags/all">All</a>
 			<% current_user.tags.each do |tag| %>
-				<a class="tag" href="/tags/<%= tag.slug(tag.name) %>"><%= tag.name %></a>
+				<a class="tag" href="/<%= current_user.username %>/tags/<%= tag.slug(tag.name) %>"><%= tag.name %></a>
 			<% end %>
 		</div>
 		<img id="close-button" class="close-tags hidden cursor" src="/img/close.svg">
