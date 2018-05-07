@@ -13,7 +13,6 @@
 	    grid-area: snippets;
 	    width: 200px;
 	    justify-self: start;
-	    z-index: 1000;
 	    box-shadow: var(--boxBlueGlow);
 	}
 	
@@ -32,6 +31,8 @@
 	.snippet { margin-left: 15px; }
 	
 	#close-button { display: block; }
+	
+	.quickie { margin: 0; }
 	
 }
 /****************************************************************************/
