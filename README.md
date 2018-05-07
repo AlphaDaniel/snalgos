@@ -6,6 +6,8 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/just-plain-nasty.svg)](https://forthebadge.com)
 
+[![GitHub last commit](https://img.shields.io/github/last-commit/AlphaDaniel/snalgos.svg?colorB=49C529)](https://github.com/AlphaDaniel/snalgos/commits/master)
+
 ---
 **SNALGOS** is a MVC Sinatra web application that allows users to store code snippets and algorhythms using the popular [ACE Editor](https://ace.c9.io). Store your snippets and categorize / organize them with custom **TAGS!**
 
