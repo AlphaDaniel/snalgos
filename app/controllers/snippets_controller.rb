@@ -9,16 +9,19 @@ class SnippetsController < ApplicationController
   post '/snippets/new' do 
     # live demo limit
     alert(:demo) and go("/") if current_user.snippets.count >= 5
+    # title duplicate check
+    alert(:title_taken) and go("/snippets/new") if current_user.snippets.any? {|snippet| snippet.title == params[:title]}
+    
     # get editor session
     editor_session = EditorSession.create(mode: params[:mode])
     # validate input
     validate_snippet(params[:content])
     # find or create snippet
-    snippet = Snippet.find_or_create_by(title: params[:title], content: parsed(params[:content]))
+    snippet = Snippet.find_or_create_by(title: params[:title], content: parsed(params[:content]), user: current_user)
     # assign editor session
     snippet.editor_session = editor_session
     # assign snippet if uniq
-    current_user.snippets << snippet if !current_user.snippets.include?(snippet)
+   # current_user.snippets << snippet if !current_user.snippets.include?(snippet)
     # tag handler
     params[:tags].each do |tag_name|
       # find or create tags 
@@ -68,7 +71,7 @@ class SnippetsController < ApplicationController
   get '/:user/snippets/:snippet_title' do 
     login_required
     
-    @snippet = Snippet.find_by(title: de_slug(params[:snippet_title]))
+    @snippet = Snippet.find_by(title: de_slug(params[:snippet_title]), user_id: current_user.id)
     
     go("/404") if @snippet.nil? 
     

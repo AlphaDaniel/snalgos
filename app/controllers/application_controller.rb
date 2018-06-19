@@ -82,6 +82,7 @@ class ApplicationController < Sinatra::Base
         :empty, "Your snippet is unhappy. Your snippet is empty. Help the snippet. Fill the snippet.",
         :snippets, "You Have Not Created Any Snippets Yet, Click Create To Get Started",
         :name_taken, "That Username Is Taken, Please Try Another",
+        :title_taken, "That Title Has Already Been Used, Please Try Another",
         :demo, "You Have Reached The Snippets Limit For This Demo Version"]
     end
     
