@@ -1,3 +1,8 @@
+User.destroy_all
+Snippet.destroy_all
+Tag.destroy_all
+SnippetTag.destroy_all
+
 # USERS
 users = [
   {username: 'guest', email: 'e@1.com', password: '12345'},
